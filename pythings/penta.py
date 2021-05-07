@@ -6,6 +6,7 @@ import datetime
 
 import dbinsert
 
+#check mima
 def main():
     #dbinsert.insertpenta('五杀五杀', 'https://v.huya.com/play/499799441.html','卯月一', '2021-05-01 21:28')
 

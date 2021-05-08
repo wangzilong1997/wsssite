@@ -1,2 +1,4 @@
 pythings/setting.py
 pythings/setting.ini
+node_modules
+src/setting.js

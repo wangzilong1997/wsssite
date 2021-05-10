@@ -22,7 +22,7 @@ def getsubject():
         print("当前页面",allpages - page)
 
 
-        get = get = requests.get(url='https://v.huya.com/g/vhuyawzry?set_id=3&order=new&page=' + str(allpages - page))
+        get = requests.get(url='https://v.huya.com/g/vhuyawzry?set_id=3&order=new&page=' + str(allpages - page))
         get.encoding = 'utf-8'
         
         selector = etree.HTML(get.text)
@@ -51,7 +51,12 @@ def findtext(selector,index,lenpage):
 
         print("是否五杀",result)
         href = selector.xpath('/html/body/article/section/div[2]/div/ul/li['+ str(lenpage - item) +']/a/@href')
- 
+        #注意此处虎牙img并非src而是data-original
+        imgurl = selector.xpath('/html/body/article/section/div[2]/div/ul/li['+ str(lenpage - item) +']/a/div/img/@data-original')
+        
+        
+        print("hrefhref",href)
+        print("imgurlimgurl",imgurl)
         item = item + 1
 
         
@@ -67,17 +72,20 @@ def findtext(selector,index,lenpage):
 
             itemtime = selectoritem.xpath('//*[@id="play2"]/div[2]/div[1]/div[2]/div[1]/div[1]/p[1]/span[2]/text()')
             author = selectoritem.xpath('//*[@id="play2"]/div[2]/div[1]/div[2]/div[1]/div[2]/a[1]/h3/text()')
+            
+            new_imgurl = "https:" + imgurl[0]
+            print("imgurl",imgurl)
 
             print("new_titles",new_titles)
             print("author",author[0])
             print('itemtime',itemtime[0])
             print("new_href",new_href)
 
-
+            #需判断时间是否插入
             if(comparetime(itemtime[0])):
 
                 print("最新数据更新")
-                dbinsert.insertpenta(new_titles,new_href,author[0],itemtime[0])
+                dbinsert.insertpenta(new_titles,new_href,author[0],itemtime[0],new_imgurl)
             
 
 

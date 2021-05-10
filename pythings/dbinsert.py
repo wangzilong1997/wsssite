@@ -12,7 +12,7 @@ from setting import host,port,database,user,password,charset
 
 
 
-def insertpenta(titile,url,author,timeinhere):
+def insertpenta(titile,url,author,timeinhere,imgurl):
     
  
 
@@ -24,9 +24,9 @@ def insertpenta(titile,url,author,timeinhere):
     print("链接开始")
 
 
-    query = 'insert into penta(title, url, author, time) values(%s, %s, %s, %s)'
+    query = 'insert into penta(title, url, author, time,imgurl) values(%s, %s, %s, %s, %s)'
     
-    values = (titile,url,author,timeinhere)
+    values = (titile,url,author,timeinhere,imgurl)
 
     cs1.execute(query, values)
 

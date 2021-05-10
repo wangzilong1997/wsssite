@@ -73,7 +73,13 @@ def findtext(selector,index,lenpage):
             itemtime = selectoritem.xpath('//*[@id="play2"]/div[2]/div[1]/div[2]/div[1]/div[1]/p[1]/span[2]/text()')
             author = selectoritem.xpath('//*[@id="play2"]/div[2]/div[1]/div[2]/div[1]/div[2]/a[1]/h3/text()')
             
-            new_imgurl = "https:" + imgurl[0]
+            #有的图片链接自带https:
+            if(imgurl[0][0:6] == "https:" ):
+                print("ulr https:执行")
+                new_imgurl = imgurl[0]
+            else:
+                new_imgurl = "https:" + imgurl[0]
+                print("ulr https:执行")
             print("imgurl",imgurl)
 
             print("new_titles",new_titles)

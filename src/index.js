@@ -6,26 +6,7 @@ const mysql = require("mysql")
 
 const {setting} = require("./setting")
 
-const schedule = require('node-schedule')
 
-const cp = require('child_process')
-const { stderr } = require('process')
-
-const cphuyapenta = () =>{
-	//每天每小时执行
-	schedule.scheduleJob('30 [0,30] * * * *',()=>{
-		cp.exec('python3 pythings/penta.py',(err,stdout,stderr)=>{
-            if (err) {
-                console.log('stderr',err)
-            }
-            if (stdout) {
-                console.log('stdout',stdout)
-            }
-        })
-		console.log('schedule执行：'+ new Date());
-	});
-}
-cphuyapenta()
 
 
 console.log('setting',setting)

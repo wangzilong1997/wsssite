@@ -6,7 +6,9 @@ const mysql = require("mysql")
 
 const {setting} = require("./setting")
 
-
+let url = require('url')
+var fs = require('fs')
+var path = require("path")
 
 
 console.log('setting',setting)
@@ -19,9 +21,12 @@ db.connect((err) => {
 
 
 
-app.get('/huyapenta',(req,res)=>{
+app.get('/huyapenta/:page',(req,res)=>{
+    let { page } = req.params
+
+    console.log("page",page)
     console.log("list被访问")
-    let sql = 'select * from penta order by pentaid desc limit 10'
+    let sql = 'select * from penta order by pentaid desc limit '+ String(parseInt(page) *10 + 25)
     db.query(sql,(err,result)=>{
         if(err){
             console.log(err)
@@ -32,6 +37,19 @@ app.get('/huyapenta',(req,res)=>{
             })
         }
     })
+})
+
+app.get('/index',(req,res)=>{
+    res.writeHead(200,{'Content-Type':'text/html'})
+
+    fs.readFile(path.join(__dirname,'../show/index.html'),'utf-8',(err,data)=>{
+        
+        if (err) {
+            throw err
+        }
+        res.end(data)
+    })
+
 })
 
 app.listen(8080,()=>{

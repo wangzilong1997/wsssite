@@ -16,31 +16,35 @@
 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
 <body>
-    <div id="app">
-        <div v-for='item in huyadata' v-on:key="item.pentaid" style="padding-left:5%;padding-right: 5%;width: 90%;margin: 0 auto;">
+    <div id="app" style="display: flex;flex-direction: row;flex-wrap: wrap;margin: 0 3rem;">
+        <div v-for='item in huyadata' v-on:key="item.pentaid" style="flex: 1;align-items: center;text-align: center;">
 
-            <div style="width:20rem;float:left;height: 15rem;" onclick="getdata">
-                <div>
+            <div style="width:25rem;margin: 1rem auto;border:.2rem solid #cecece;border-radius: .5rem;background-color: bisque;" onclick="getdata">
+                
+                <div style="margin: 1rem 0;"> 
+                    <a :href="item.url" target="_blank">
+                        <img :src='item.imgurl' alt="图片路径" width="240px" height="150px" style="border-radius: .3rem;">
+                    </a>
+                    
+                </div>
+                <div style="height: 2rem;">
                     {{
                         item.title
                     }}
                 </div>
-                <div>
-                    <a :href="item.url">
-                        <img :src='item.imgurl' alt="图片路径" width="200px" height="120px">
-                    </a>
-                    
+                <div style="display: flex;justify-content: space-between;margin: 1rem 2rem;">
+                    <div>
+                        {{
+                            item.author
+                        }}
+                    </div>
+                    <div>
+                        {{
+                            item.time
+                        }}
+                    </div>
                 </div>
-                <div>
-                    {{
-                        item.author
-                    }}
-                </div>
-                <div>
-                    {{
-                        item.time
-                    }}
-                </div>
+                
                 
             </div>
             
@@ -48,6 +52,7 @@
     </div>
 
     <script type="text/javascript">
+        
         var app = new Vue({
             el:'#app',
             data:{
@@ -63,8 +68,9 @@
                 
             },
             methods:{
-                getdata:function(datalength){
-                    axios.get('http://localhost:8080/huyapenta/'+ String(this.datalength)).then(res => {
+                getdata:function(){
+     
+                    axios.get('/huyapenta/'+ String(this.datalength)).then(res => {
                     console.log(res)
                     this.huyadata = res.data.result
                     console.log(this.datalength)

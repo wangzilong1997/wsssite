@@ -3,8 +3,12 @@ import requests
 import time
 from lxml import etree
 import datetime
+import sys
 
 import dbinsert
+
+
+table = 'dypenta'
 
 #check mima
 def main():
@@ -91,7 +95,7 @@ def findtext(selector,index,lenpage):
             if(comparetime(itemtime[0])):
 
                 print("最新数据更新")
-                dbinsert.insertpenta(new_titles,new_href,author[0],itemtime[0],new_imgurl)
+                dbinsert.insertpenta(new_titles,new_href,author[0],itemtime[0],new_imgurl,table)
             
 
 
@@ -114,7 +118,7 @@ def areyoupenta(title):
 def comparetime(ctime):
     print(ctime)
 
-    undertime = dbinsert.undertime()
+    undertime = dbinsert.undertime(table)
     #人工添加残缺秒的部分
     tss2 = str(ctime)+ ':00'
     print('undertime',undertime)

@@ -8,7 +8,7 @@ import sys
 import dbinsert
 
 
-table = 'penta'
+table = 'hypenta'
 
 #check mima
 def main():

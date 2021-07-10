@@ -8,14 +8,14 @@ import datetime
 import configparser
 from setting import host,port,database,user,password,charset
 
+from string import Template
 
 
-
-
-def insertpenta(titile,url,author,timeinhere,imgurl):
+def insertpenta(titile,url,author,timeinhere,imgurl,table):
     
  
-
+    template1 = Template('insert into $table(title, url, author, time,imgurl) values(%s, %s, %s, %s, %s)')
+    
     conn = connect(host=host, port=port, database=database, user=user,
                    password=password, charset=charset)
     
@@ -24,7 +24,7 @@ def insertpenta(titile,url,author,timeinhere,imgurl):
     print("链接开始")
 
 
-    query = 'insert into penta(title, url, author, time,imgurl) values(%s, %s, %s, %s, %s)'
+    query = template1.substitute(table=table)
     
     values = (titile,url,author,timeinhere,imgurl)
 
@@ -38,12 +38,13 @@ def insertpenta(titile,url,author,timeinhere,imgurl):
     conn.close()
     print("链接结束")
 
-def undertime():
+def undertime(table):
+    template1 = Template('select time from $table where pentaid = (select max(pentaid) from $table)')
     conn = connect(host=host, port=port, database=database, user=user,
                    password=password, charset=charset)
     cs2 = conn.cursor()
 
-    query = 'select time from penta where pentaid = (select max(pentaid) from penta)'
+    query = template1.substitute(table=table)
 
     cs2.execute(query)
     print(cs2)

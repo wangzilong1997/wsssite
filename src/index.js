@@ -11,6 +11,7 @@ let fs = require('fs')
 let path = require("path")
 
 
+app.use( express.static(path.join(__dirname, '../show')));
 
 
 app.get('/huyapenta/:page',(req,res)=>{
@@ -53,6 +54,18 @@ app.get('/index',(req,res)=>{
 
 })
 
-app.listen(8080,()=>{
-    console.log("app监听8080服务端口")
+app.get('/indexReact',(req,res)=>{
+    res.writeHead(200,{'Content-Type':'text/html'})
+
+    fs.readFile(path.join(__dirname,'../show/indexReact.html'),'utf-8',(err,data)=>{
+        if (err) {
+            throw err
+        }
+        res.end(data)
+    })
+
+})
+
+app.listen(80,()=>{
+    console.log("app监听80服务端口")
 })

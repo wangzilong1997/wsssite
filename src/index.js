@@ -29,7 +29,7 @@ app.get('/huyapenta/:page',(req,res)=>{
     console.log("page",page)
     console.log("list被访问")
     // let sql = '(select * from penta) union (select * from hyrelation) '
-    let sql = 'select * from penta left outer join hyrelation on hyrelation.relationpentaid = penta.pentaid order by penta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
+    let sql = 'select pentaid,author,imgurl,time,title,url,views from penta left outer join hyrelation on hyrelation.relationpentaid = penta.pentaid order by penta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
     db.query(sql,(err,result)=>{
         if(err){
             console.log(err)

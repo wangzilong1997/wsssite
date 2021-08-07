@@ -5,7 +5,7 @@ const app = express()
 const mysql = require("mysql")
 
 const {setting} = require("./setting")
-
+const querystring = require('querystring');
 let url = require('url')
 let fs = require('fs')
 let path = require("path")
@@ -13,10 +13,10 @@ let path = require("path")
 
 app.use( express.static(path.join(__dirname, '../show')));
 
-
+// hy信息get查询
 app.get('/huyapenta/:page',(req,res)=>{
     console.log('setting',setting)
-    const db = mysql.createConnection(setting)
+    let db = mysql.createConnection(setting)
 
     db.connect((err) => {
         if(err) throw err;
@@ -40,6 +40,79 @@ app.get('/huyapenta/:page',(req,res)=>{
         }
     })
     db.end();
+})
+
+app.post('/api/hyrelation',(req,res)=>{
+    console.log('/api/hyrelation访问')
+    let str = ""
+    req.on('data',function(data){
+        str += data    //串联  data 数据
+    });
+    req.on('end',function(){
+        str = decodeURI(str);
+        let reqparams = querystring.parse(str);
+        console.log(reqparams.pentaid);
+        console.log(typeof reqparams)
+        let db = mysql.createConnection(setting)
+
+        db.connect((err) => {
+            if(err) throw err;
+            console.log("链接成功")
+        })
+        let sql = 'select views from hyrelation where pentaid = ' + reqparams.pentaid
+        console.log('sql',sql)
+        db.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+            }else{
+                console.log(result.length)
+                if( result.length == 0 ) {
+                    let addsql = 'insert into hyrelation (pentaid,views) values ('+ reqparams.pentaid + ',1)' 
+                    console.log(addsql)
+                    db.query(addsql,(err,result)=>{
+                        if(err){
+                            console.log(err)
+                        }else{
+                            console.log(result)
+                            res.json({
+                                success:true,
+                                result:result
+                            })
+                        }
+                    })
+                    db.end()
+                }else{
+                    console.log('result.views',result)
+                    let dataString = JSON.stringify(result);
+                    let data = JSON.parse(dataString);
+                    console.log('result.views',data)
+                    let addviews = `update hyrelation set views = ${data[0].views + 1} where pentaid = ${reqparams.pentaid}` 
+                    console.log(addviews)
+                    db.query(addviews,(err,result)=>{
+                        if(err){
+                            console.log(err)
+                        }else{
+                            console.log(result)
+                            res.json({
+                                success:true,
+                                result:result
+                            })
+                        }
+                    })
+                    db.end()
+                }
+                
+                
+            }
+        })
+        
+        // res.json({
+        //     result:'success',
+        //     pentaid:reqparams.pentaid
+        // })
+	})
+    
+    
 })
 
 app.get('/index',(req,res)=>{

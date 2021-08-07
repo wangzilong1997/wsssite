@@ -28,7 +28,8 @@ app.get('/huyapenta/:page',(req,res)=>{
 
     console.log("page",page)
     console.log("list被访问")
-    let sql = 'select * from penta order by pentaid desc limit '+ String(parseInt(page) *10 + 25)
+    // let sql = '(select * from penta) union (select * from hyrelation) '
+    let sql = 'select * from penta left outer join hyrelation on hyrelation.relationpentaid = penta.pentaid order by penta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
     db.query(sql,(err,result)=>{
         if(err){
             console.log(err)
@@ -59,7 +60,7 @@ app.post('/api/hyrelation',(req,res)=>{
             if(err) throw err;
             console.log("链接成功")
         })
-        let sql = 'select views from hyrelation where pentaid = ' + reqparams.pentaid
+        let sql = 'select views from hyrelation where relationpentaid = ' + reqparams.pentaid
         console.log('sql',sql)
         db.query(sql,(err,result)=>{
             if(err){
@@ -67,7 +68,7 @@ app.post('/api/hyrelation',(req,res)=>{
             }else{
                 console.log(result.length)
                 if( result.length == 0 ) {
-                    let addsql = 'insert into hyrelation (pentaid,views) values ('+ reqparams.pentaid + ',1)' 
+                    let addsql = 'insert into hyrelation (relationpentaid,views) values ('+ reqparams.pentaid + ',1)' 
                     console.log(addsql)
                     db.query(addsql,(err,result)=>{
                         if(err){
@@ -86,7 +87,7 @@ app.post('/api/hyrelation',(req,res)=>{
                     let dataString = JSON.stringify(result);
                     let data = JSON.parse(dataString);
                     console.log('result.views',data)
-                    let addviews = `update hyrelation set views = ${data[0].views + 1} where pentaid = ${reqparams.pentaid}` 
+                    let addviews = `update hyrelation set views = ${data[0].views + 1} where relationpentaid = ${reqparams.pentaid}` 
                     console.log(addviews)
                     db.query(addviews,(err,result)=>{
                         if(err){

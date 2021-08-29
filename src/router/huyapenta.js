@@ -3,7 +3,7 @@ var router = express.Router();
 
 const mysql = require("mysql")
 
-const {setting} = require("../setting")
+const {setting} = require("../../conf/db")
 
 router.get('/huyapenta/:page',(req,res)=>{
     console.log('setting',setting)

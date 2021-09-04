@@ -3,8 +3,11 @@ var router = express.Router();
 
 const mysql = require("mysql")
 
+const querystring = require('querystring')
+
 const {setting} = require("../../conf/db")
 
+// 虎牙五杀信息接口
 router.get('/huyapenta/:page',(req,res)=>{
     console.log('setting',setting)
     let db = mysql.createConnection(setting)
@@ -34,6 +37,7 @@ router.get('/huyapenta/:page',(req,res)=>{
     db.end();
 })
 
+// 五杀视频访问数接口
 router.post('/api/hyrelation',(req,res)=>{
     console.log('/api/hyrelation访问')
     let str = ""
@@ -102,4 +106,8 @@ router.post('/api/hyrelation',(req,res)=>{
     
 })
 
+// 虎牙五杀点赞点踩接口
+router.post('/api/relation/like',(req,res) =>{
+
+})
 module.exports = router;

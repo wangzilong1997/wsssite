@@ -8,7 +8,7 @@ const querystring = require('querystring')
 const {setting} = require("../../conf/db")
 
 // 虎牙五杀信息接口
-router.get('/huyapenta/:page',(req,res)=>{
+router.get('/api/huyapenta/:page',(req,res)=>{
     console.log('setting',setting)
     let db = mysql.createConnection(setting)
 

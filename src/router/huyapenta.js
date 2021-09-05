@@ -38,7 +38,7 @@ router.get('/api/huyapenta/:page',(req,res)=>{
 })
 
 // 五杀视频访问数接口
-router.post('/api/hyrelation',(req,res)=>{
+router.post('/api/relation/view',(req,res)=>{
     console.log('/api/hyrelation访问')
     let str = ""
     req.on('data',function(data){

@@ -28,11 +28,11 @@ def getsubject():
 
         get = requests.get(url='https://v.huya.com/g/vhuyawzry?set_id=3&order=new&page=' + str(allpages - page))
         get.encoding = 'utf-8'
-        
+        #print('get',get.text)
         selector = etree.HTML(get.text)
-
+        #print('selector',selector)
         # 当前所访问页面的长度
-        pagelength = selector.xpath("/html/body/article/section/div[2]/div/ul/li")
+        pagelength = selector.xpath("/html/body/div[1]/div/article/section/ul[2]/li")
         lenpage = len(pagelength)
         print('pagelength',len(pagelength))
         # 提取信息
@@ -46,7 +46,7 @@ def findtext(selector,index,lenpage):
     item = 0;
 
     for i in range(0,lenpage):
-        title = selector.xpath('/html/body/article/section/div[2]/div/ul/li['+ str(lenpage - item) +']/a/p/text()')
+        title = selector.xpath('/html/body/div[1]/div/article/section/ul[2]/li['+ str(lenpage - item) +']/a/p/text()')
         if title == []:
             print("这个b标题为空")
             title.append("标题为空")
@@ -54,11 +54,13 @@ def findtext(selector,index,lenpage):
         result = areyoupenta(title)
 
         print("是否五杀",result)
-        href = selector.xpath('/html/body/article/section/div[2]/div/ul/li['+ str(lenpage - item) +']/a/@href')
+        href = selector.xpath('/html/body/div[1]/div/article/section/ul[2]/li['+ str(lenpage - item) +']/a/@href')
         #注意此处虎牙img并非src而是data-original
-        imgurl = selector.xpath('/html/body/article/section/div[2]/div/ul/li['+ str(lenpage - item) +']/a/div/img/@data-original')
+        #imgurl = selector.xpath('/html/body/div[1]/div/article/section/ul[2]/li['+ str(lenpage - item) +']/a/div/img/@data-original')
+        imgurl = selector.xpath('//*[@id="root"]/div/article/section/ul[2]/li['+ str(lenpage - item) +']/a/div/span/img')
+        #//*[@id="root"]/div/article/section/ul[2]/li[2]/a/div/span/img
         
-        
+        imgurl = ['//v-huya-img2.msstatic.com/screenshot/2139/585051519/99.jpg?x-oss-process=style/220x124']
         print("hrefhref",href)
         print("imgurlimgurl",imgurl)
         item = item + 1
@@ -141,4 +143,3 @@ def comparetime(ctime):
 
 if __name__ == '__main__':
     main()
-    

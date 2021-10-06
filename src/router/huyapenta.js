@@ -22,8 +22,8 @@ router.get('/api/huyapenta/:page',(req,res)=>{
 
     console.log("page",page)
     console.log("list被访问")
-    // let sql = '(select * from penta) union (select * from hyrelation) '
-    let sql = 'select pentaid,author,imgurl,time,title,url,views,likes,unlikes from penta left outer join hyrelation on hyrelation.relationpentaid = penta.pentaid order by penta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
+    // let sql = '(select * from h y pen ta) union (select * from hyrelation) '
+    let sql = 'select pentaid,author,imgurl,time,title,url,views,likes,unlikes from hypenta left outer join hyrelation on hyrelation.relationpentaid = hypenta.pentaid order by hypenta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
     db.query(sql,(err,result)=>{
         if(err){
             console.log(err)

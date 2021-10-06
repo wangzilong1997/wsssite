@@ -49,8 +49,10 @@ def undertime(table):
 
     cs2.execute(query)
     print(cs2)
-
-    endtime = cs2.fetchone()[0]
+    try:
+        endtime = cs2.fetchone()[0]
+    except BaseException:
+        endtime = "2016-00-00 00:00:00"
     print(typeof(cs2.fetchall()))
 
 

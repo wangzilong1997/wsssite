@@ -239,4 +239,150 @@ router.post('/api/relation/unlike',(req,res) =>{
     })
 })
 
+// toJSon
+router.get('/api/backtoJson', (req, res) => {
+  console.log(req)
+  res.json({
+    "BasicResponse": {
+        "succeeded": 1
+    },
+    "RTDataSets": [
+        {
+            "kksCode": "BA2.BSH.LN_BSH_11_001_YC02",
+            "type": 1,
+            "RTDataValues": [
+                {
+                    "Value": 0,
+                    "Time": 1632827562000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826721000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826661000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826601000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826541000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826422000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826421000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826361000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826301000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826241000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826181000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826121000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826075000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826001000
+                }
+            ]
+        }
+    ]
+  })
+})
+router.post('/api/backtoJson', (req, res) => {
+  console.log(req)
+  res.json({
+    "BasicResponse": {
+        "succeeded": 1
+    },
+    "RTDataSets": [
+        {
+            "kksCode": "BA2.BSH.LN_BSH_11_001_YC02",
+            "type": 1,
+            "RTDataValues": [
+                {
+                    "Value": 0,
+                    "Time": 1632827562000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826721000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826661000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826601000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826541000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826422000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826421000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826361000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826301000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826241000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826181000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826121000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826075000
+                },
+                {
+                    "Value": 0,
+                    "Time": 1632826001000
+                }
+            ]
+        }
+    ]
+  })
+})
+
 module.exports = router;

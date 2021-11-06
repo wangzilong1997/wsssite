@@ -4,13 +4,17 @@ const fs = require('fs')
 const path = require("path")
 
 // huyapenta路由
-const huyapenta = require('./router/huyapenta')
+const huyapenta = require('../router/huyapenta')
+const test = require('../router/test')
 
 app.use( express.static(path.join(__dirname, '../public')));
 
 
 // hy信息get查询
 app.use('/',huyapenta)
+
+// 测试路由
+app.use('/test',test)
 
 app.get('/index',(req,res)=>{
     res.writeHead(200,{'Content-Type':'text/html'})

@@ -1,8 +1,6 @@
 var express = require('express')
 var router = express.Router();
 
-const mysql = require("mysql")
-
 const querystring = require('querystring')
 
 const {MYSQL_CONF} = require("../conf/db")
@@ -49,7 +47,7 @@ router.post('/api/relation/view',(req,res)=>{
             let dataString = JSON.stringify(result);
             let data = JSON.parse(dataString);
             console.log('result.views',data)
-            let addviews = `update hyrelation set views = ${data[0].views + 1} where relationpentaid = ${reqparams.pentaid}` 
+            let addviews = `update hyrelation set views = ${+data[0].views + 1} where relationpentaid = ${reqparams.pentaid}` 
             console.log(addviews)
             exec(addviews).then(result => {
                 res.json({
@@ -86,8 +84,10 @@ router.post('/api/relation/like',(req,res) =>{
           console.log('result.views',result)
           let dataString = JSON.stringify(result);
           let data = JSON.parse(dataString);
+          let likes = +data[0].likes
+          console.log('likes',typeof likes)
           console.log('result.views',data)
-          let addviews = `update hyrelation set likes = ${+data[0].likes + 1} where relationpentaid = ${reqparams.pentaid}` 
+          let addviews = `update hyrelation set likes = ${likes + 1} where relationpentaid = ${reqparams.pentaid}` 
           console.log(addviews)
           exec(addviews).then(result => {
               res.json({

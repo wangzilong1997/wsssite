@@ -7,6 +7,8 @@ const path = require("path")
 const huyapenta = require('../router/huyapenta')
 const test = require('../router/test')
 
+// 用户相关路由
+const users = require('../router/users')
 app.use( express.static(path.join(__dirname, '../public')));
 
 
@@ -15,6 +17,9 @@ app.use('/',huyapenta)
 
 // 测试路由
 app.use('/test',test)
+
+// 用户相关路由
+app.use('/users',users)
 
 app.get('/index',(req,res)=>{
     res.writeHead(200,{'Content-Type':'text/html'})

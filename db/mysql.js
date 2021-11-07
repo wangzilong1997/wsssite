@@ -7,6 +7,12 @@ const con = mysql.createConnection(MYSQL_CONF)
 
 // 执行统一执行语句
 const exec = (sql) => {
+  // 缺少数据库连接池的处理
+  // con.connect((err) => {
+  //   if(err) throw err;
+  //   console.log("链接成功")
+  // })
+  
   // console.log(MYSQL_CONF)
   const promise = new Promise((resolve, reject) => {
     con.query(sql, (err, result) => {
@@ -16,7 +22,9 @@ const exec = (sql) => {
             return
         }
         resolve(result)
+        
     })
+    // con.end();
 })
 return promise
 }

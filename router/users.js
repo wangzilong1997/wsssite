@@ -63,8 +63,8 @@ router.post('/api/user/login',(req,res) => {
       }else{
         console.log('hello',result[0])
         if(result[0].password == reqparams.password){
-          // 设置 session
-          req.session = {name:result[0].name}
+          // 设置 cookie 设置登陆用户
+          res.cookie("username",result[0].name);
           res.json({
             success:true,
             result:"登陆成功"
@@ -74,6 +74,25 @@ router.post('/api/user/login',(req,res) => {
     })
     
 
+  })
+
+})
+router.post('/api/user/logout',(req,res) => {
+  console.log('虎牙点赞接口')
+  let str = ""
+  req.on('data', (data) => {
+      str += data
+  })
+  req.on('end', () => {
+    str = decodeURI(str);
+    let reqparams = querystring.parse(str);
+    console.log(reqparams)
+    
+    res.clearCookie('username')
+    res.json({
+      success:true,
+      result:req.cookies.username
+    })
   })
 
 })

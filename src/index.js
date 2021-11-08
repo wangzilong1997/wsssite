@@ -3,6 +3,10 @@ const app = express()
 const fs = require('fs')
 const path = require("path")
 
+// 处理cookie中间件
+var cookieParser = require('cookie-parser');
+
+
 // huyapenta路由
 const huyapenta = require('../router/huyapenta')
 const test = require('../router/test')
@@ -11,6 +15,8 @@ const test = require('../router/test')
 const users = require('../router/users')
 app.use( express.static(path.join(__dirname, '../public')));
 
+// cookie过滤中间件
+app.use(cookieParser())
 
 // hy信息get查询
 app.use('/',huyapenta)

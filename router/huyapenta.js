@@ -20,6 +20,19 @@ router.get('/api/huyapenta/:page',(req,res)=>{
       console.log(e)
     })
 })
+// 斗鱼五杀信息接口
+router.get('/api/douyupenta/:page',(req,res)=>{
+  let { page } = req.params
+
+  let sql = 'select pentaid,author,imgurl,time,title,url,views,likes,unlikes from dypenta left outer join dyrelation on dyrelation.relationpentaid = dypenta.pentaid order by dypenta.pentaid desc limit '+ String(parseInt(page) *10 + 25) 
+  exec(sql).then(result => {
+      res.json({
+          result:result
+      })
+  }).catch(e => {
+    console.log(e)
+  })
+})
 
 // 五杀视频访问数接口
 router.post('/api/relation/view',(req,res)=>{

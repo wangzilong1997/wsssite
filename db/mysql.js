@@ -7,11 +7,6 @@ const  { MYSQL_CONF }  = require('../conf/db')
 // 执行统一执行语句
 const exec = (sql) => {
   // 缺少数据库连接池的处理
-  // con.connect((err) => {
-  //   if(err) throw err;
-  //   console.log("链接成功")
-  // })
-  
   // console.log(MYSQL_CONF)
   const promise = new Promise((resolve, reject) => {
     // 创建链接对象

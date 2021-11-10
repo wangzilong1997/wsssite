@@ -3,4 +3,7 @@ pythings/setting.ini
 node_modules
 src/setting.js
 
+# 证书
+cert/* 
+
 conf

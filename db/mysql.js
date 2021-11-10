@@ -28,8 +28,9 @@ const exec = (sql) => {
             return
         }
         resolve(result)
-        con.end();
+        
     })
+    con.end();
 
 })
 return promise

@@ -31,8 +31,8 @@ app.use('/users', users)
 
 // 检查中间件过滤cookie 检查是否有权限访问业务接口
 app.use((req, res, next) => {
-  console.log('appuse login cookie', JSON.stringify(req.cookies), JSON.stringify(req.signedCookies), JSON.stringify(req.secret))
-  if (req && req.cookies && req.cookies.username && (req.secret == "wangzilongzhendeshuai")) {
+  console.log('appuse login cookie', JSON.stringify(req.cookies), JSON.stringify(req.signedCookies), JSON.stringify(req.secret), req)
+  if (req && req.cookies && req.cookies.username && (req.cookies.secret == "wangzilongzhendeshuai")) {
     next()
   } else {
     res.json({

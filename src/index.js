@@ -11,18 +11,36 @@ var credentials = { key: privatekey, cert: privatepem }
 var cookieParser = require('cookie-parser');
 
 
+
+// 用户相关路由
+const users = require('../router/users')
+
 // huyapenta路由
 const huyapenta = require('../router/huyapenta')
 // douyupenta路由
 const douyupenta = require('../router/huyapenta')
 const test = require('../router/test')
 
-// 用户相关路由
-const users = require('../router/users')
 app.use(express.static(path.join(__dirname, '../public')));
 
 // cookie过滤中间件
 app.use(cookieParser())
+
+// 用户相关路由
+app.use('/users', users)
+
+// 检查中间件过滤cookie 检查是否有权限访问业务接口
+app.use((req, res, next) => {
+  console.log('appuse login cookie', JSON.stringify(req.cookies))
+  if (req && req.cookies && req.cookies.username) {
+    next()
+  } else {
+    res.json({
+      resule: "请先设置cookie",
+      success: false
+    })
+  }
+})
 
 // hy信息get查询
 app.use('/', huyapenta)
@@ -32,8 +50,7 @@ app.use('/', huyapenta)
 // 测试路由
 app.use('/test', test)
 
-// 用户相关路由
-app.use('/users', users)
+
 
 app.get('/index', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' })

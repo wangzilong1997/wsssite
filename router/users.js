@@ -75,7 +75,7 @@ router.post('/api/user/login', (req, res) => {
           res.cookie("username", result[0].name, {
             httpOnly: true, // 只允许后端修改
             expires: false,
-            maxAge: 5 * 60 * 1000,
+            maxAge: 12 * 60 * 60 * 1000,
             path: '/'
           });
           res.json({

@@ -24,15 +24,15 @@ const test = require('../router/test')
 app.use(express.static(path.join(__dirname, '../public')));
 
 // cookie过滤中间件
-app.use(cookieParser())
+app.use(cookieParser("wangzilongzhendeshuai"))
 
 // 用户相关路由
 app.use('/users', users)
 
 // 检查中间件过滤cookie 检查是否有权限访问业务接口
 app.use((req, res, next) => {
-  console.log('appuse login cookie', JSON.stringify(req.cookies))
-  if (req && req.cookies && req.cookies.username) {
+  console.log('appuse login cookie', JSON.stringify(req.cookies), JSON.stringify(req.signedCookies), JSON.stringify(req.secret))
+  if (req && req.cookies && req.cookies.username && req.secret == "wangzilongzhendeshuai") {
     next()
   } else {
     res.json({

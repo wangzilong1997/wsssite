@@ -76,7 +76,8 @@ router.post('/api/user/login', (req, res) => {
             httpOnly: true, // 只允许后端修改
             expires: false,
             maxAge: 12 * 60 * 60 * 1000,
-            path: '/'
+            path: '/',
+            signed: true, // 设置签名
           });
           res.json({
             success: true,

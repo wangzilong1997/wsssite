@@ -15,11 +15,6 @@ var cookieParser = require('cookie-parser');
 // 用户相关路由
 const users = require('../router/users')
 
-// huyapenta路由
-const huyapenta = require('../router/huyapenta')
-// douyupenta路由
-const douyupenta = require('../router/huyapenta')
-
 const penta = require('../router/penta/index')
 const test = require('../router/test')
 
@@ -46,14 +41,8 @@ app.use((req, res, next) => {
   }
 })
 
-// hy信息接口
-// app.use('/')
-
-app.use('/', huyapenta)
 
 app.use('/penta', penta)
-// douyu信息get查询
-// app.use('/', douyupenta)
 
 // 测试路由
 app.use('/test', test)

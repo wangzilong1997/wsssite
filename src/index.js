@@ -19,6 +19,8 @@ const users = require('../router/users')
 const huyapenta = require('../router/huyapenta')
 // douyupenta路由
 const douyupenta = require('../router/huyapenta')
+
+const penta = require('../router/penta/index')
 const test = require('../router/test')
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -28,6 +30,8 @@ app.use(cookieParser("wangzilongzhendeshuai"))
 
 // 用户相关路由
 app.use('/users', users)
+
+
 
 // 检查中间件过滤cookie 检查是否有权限访问业务接口
 app.use((req, res, next) => {
@@ -42,10 +46,14 @@ app.use((req, res, next) => {
   }
 })
 
-// hy信息get查询
+// hy信息接口
+// app.use('/')
+
 app.use('/', huyapenta)
+
+app.use('/penta', penta)
 // douyu信息get查询
-// app.use('/',douyupenta)
+// app.use('/', douyupenta)
 
 // 测试路由
 app.use('/test', test)

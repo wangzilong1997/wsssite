@@ -71,6 +71,7 @@ router.post('/api/user/login', (req, res) => {
       } else {
         console.log('hello', result[0])
         if (result[0].password == reqparams.password) {
+          res.clearCookie();
           // 设置 cookie 设置登陆用户
           res.cookie("username", result[0].name, {
             httpOnly: true, // 只允许后端修改

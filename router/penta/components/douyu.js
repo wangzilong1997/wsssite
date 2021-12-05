@@ -3,12 +3,12 @@ var router = express.Router();
 
 const querystring = require('querystring')
 
-const { MYSQL_CONF } = require("../conf/db")
+const { MYSQL_CONF } = require("../../../conf/db")
 
-const { exec } = require('../db/mysql')
+const { exec } = require('../../../db/mysql')
 
 // 斗鱼五杀信息接口
-router.get('/api/douyupenta/:page', (req, res) => {
+router.get('/:page', (req, res) => {
   let { page } = req.params
 
   let sql = 'select pentaid,author,imgurl,time,title,url,views,likes,unlikes from dypenta left outer join dyrelation on dyrelation.relationpentaid = dypenta.pentaid order by dypenta.pentaid desc limit ' + String(parseInt(page) * 10 + 25)
@@ -22,7 +22,7 @@ router.get('/api/douyupenta/:page', (req, res) => {
 })
 
 // 五杀视频访问数接口
-router.post('/api/dyrelation/view', (req, res) => {
+router.post('/view', (req, res) => {
   console.log('/api/dyrelation访问')
   let str = ""
   req.on('data', function (data) {
@@ -61,7 +61,7 @@ router.post('/api/dyrelation/view', (req, res) => {
 })
 
 // 斗鱼五杀点赞接口
-router.post('/api/dyrelation/like', (req, res) => {
+router.post('/like', (req, res) => {
   console.log('虎牙点赞接口')
   let str = ""
   req.on('data', (data) => {
@@ -100,7 +100,7 @@ router.post('/api/dyrelation/like', (req, res) => {
   })
 })
 // 斗鱼五杀点踩接口
-router.post('/api/dyrelation/unlike', (req, res) => {
+router.post('/unlike', (req, res) => {
   console.log('虎牙点赞接口')
   let str = ""
   req.on('data', (data) => {

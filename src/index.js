@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const path = require("path")
-
+var http = require('http');
 var https = require('https')
 var privatepem = fs.readFileSync('cert/guofudiyiqianduan.com.pem', 'utf8')
 var privatekey = fs.readFileSync('cert/guofudiyiqianduan.com.key', 'utf8')
@@ -14,8 +14,9 @@ var cookieParser = require('cookie-parser');
 
 // 用户相关路由
 const users = require('../router/users')
-
+// 五杀相关路由
 const penta = require('../router/penta/index')
+// 测试路由
 const test = require('../router/test')
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -62,8 +63,12 @@ app.get('/index', (req, res) => {
 })
 
 
-app.listen(80, () => {
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80, () => {
   console.log("app监听80服务端口")
 })
-
-https.createServer(credentials, app).listen(443)
+httpsServer.listen(433, () => {
+  console.log('app监听433服务端口')
+})

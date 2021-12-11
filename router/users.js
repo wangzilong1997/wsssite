@@ -91,6 +91,11 @@ router.post('/api/user/login', (req, res) => {
             success: true,
             result: "登陆成功"
           })
+        } else {
+          res.json({
+            success: false,
+            result: "密码错误"
+          })
         }
       }
     })

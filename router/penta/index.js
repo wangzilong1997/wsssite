@@ -4,9 +4,11 @@ const router = express.Router();
 
 const huya = require("./components/huya");
 const douyu = require("./components/douyu");
+const common = require("./components/common")
 
 router.use("/huya", huya);
 router.use("/douyu", douyu);
+router.use("/common", common);
 
 
 module.exports = router;

@@ -30,7 +30,7 @@ router.post('/view', (req, res) => {
     console.log('views 接口访问', type, userid, pentaid, views)
     viewLogS(type, userid, pentaid, views).then(result => {
       console.log('views接口访问2', result)
-      viewS(pentaid).then((result) => {
+      viewS(type, userid, pentaid, views).then((result) => {
         res.json(result)
       })
     })
@@ -38,18 +38,18 @@ router.post('/view', (req, res) => {
     // res.json(viewS(reqparams.pentaid))
   })
 })
-// 虎牙五杀点赞接口
+// 公用点赞接口
 router.post('/like', (req, res) => {
-  console.log('虎牙点赞接口')
+  console.log('公用点赞接口')
   let str = ""
   req.on('data', (data) => {
     str += data
   })
   req.on('end', () => {
     str = decodeURI(str);
-    let { type, userid, pentaid, likes } = querystring.parse(str);
-    likeLogS(type, userid, pentaid, likes == 'likes' ? 1 : 0).then((result) => {
-      like(pentaid, type, likes).then(result => res.json(result))
+    let { type, userid, pentaid, likes, likesval } = querystring.parse(str);
+    likeLogS(type, userid, pentaid, likes, likesval).then((result) => {
+      like(pentaid, type, likes, likesval).then(result => res.json(result))
     })
 
   })
@@ -65,7 +65,7 @@ router.post('/unlike', (req, res) => {
   req.on('end', () => {
     str = decodeURI(str);
     let { type, userid, pentaid, likes } = querystring.parse(str);
-    likeLogS(type, userid, pentaid, likes == 'likes' ? 1 : 0).then((result) => {
+    likeLogS(type, userid, pentaid, likes).then((result) => {
       like(pentaid, type, likes).then(result => res.json(result))
     })
   })

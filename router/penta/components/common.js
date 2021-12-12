@@ -10,7 +10,7 @@ const { pageS, viewS, viewLogS, like, likeLogS } = require('./service')
 router.get('/:page/:type/:userid', (req, res) => {
   console.log('page接口', req.params)
   let { page, type, userid } = req.params
-  pageS(page, type = 'hy', userid).then(result => {
+  pageS(page, type, userid).then(result => {
     res.json({
       result: result
     })

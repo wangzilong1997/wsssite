@@ -49,26 +49,19 @@ router.post('/like', (req, res) => {
     str = decodeURI(str);
     let { type, userid, pentaid, likes, likesval } = querystring.parse(str);
     likeLogS(type, userid, pentaid, likes, likesval).then((result) => {
-      like(pentaid, type, likes, likesval).then(result => res.json(result))
+      like(pentaid, type, likes, likesval)
+        .then(result => res.json(result))
+        .catch(err => {
+          res.json({ success: false, result: err })
+        })
     })
+      .catch(err => {
+        res.json({ success: false, result: err })
+      })
 
   })
 })
 
-// 虎牙五杀点踩接口
-router.post('/unlike', (req, res) => {
-  console.log('虎牙点赞接口')
-  let str = ""
-  req.on('data', (data) => {
-    str += data
-  })
-  req.on('end', () => {
-    str = decodeURI(str);
-    let { type, userid, pentaid, likes } = querystring.parse(str);
-    likeLogS(type, userid, pentaid, likes).then((result) => {
-      like(pentaid, type, likes).then(result => res.json(result))
-    })
-  })
-})
+
 
 module.exports = router;

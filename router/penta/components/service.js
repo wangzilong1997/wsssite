@@ -61,7 +61,7 @@ const like = (pentaid, type = "hy", like = 'likes', likesval = 1) => {
       let likes = +data[0][like]
       console.log('likes', typeof likes)
       console.log('result.views', data)
-      let addviews = `update ${pentaType}relation set ${like} = ${likes + (likesval == 1 ? 1 : -1)} where relationpentaid = ${pentaid}`
+      let addviews = `update ${pentaType}relation set ${like} = ${(likes + (likesval == 1 ? 1 : -1)) > 0 ? (likes + (likesval == 1 ? 1 : -1)) : 0} where relationpentaid = ${pentaid}`
       console.log(addviews)
       return exec(addviews).then(result => {
         return {
@@ -81,10 +81,22 @@ const likeLogS = (type = "hy", userid = 0, pentaid = 0, likes = 'likes', likesva
     if (result.length == 0) {
       return exec(insSql)
     } else if (result.length == 1) {
+
+
+      // 数据是否有变化
+      let seletSql = `SELECT * from allpentalike WHERE pentaid = ${pentaid} and userid = ${userid} and type = '${type}' and ${likes} = ${likesval}`
       let updSql = `UPDATE allpentalike SET ${likes} = ${likesval} WHERE pentaid = ${pentaid} and userid = ${userid} and type = '${type}'`
-      return exec(updSql)
+      return exec(seletSql).then(result => {
+        if (result.length == 0) {
+          return exec(updSql).then(result => {
+            return Promise.resolve('可以进行插入操作')
+          })
+        } else {
+          return Promise.reject('存在相同数据')
+        }
+      })
     } else {
-      return new Promise.reject('错误的数据')
+      return Promise.reject('错误的数据')
     }
   })
 }

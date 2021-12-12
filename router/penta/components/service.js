@@ -2,8 +2,16 @@
 // const { MYSQL_CONF } = require("../../../conf/db")
 const { exec } = require('../../../db/mysql')
 
-const pageS = (page, type = 'hy') => {
-  let sql = 'select pentaid,author,imgurl,time,title,url,views,likes,unlikes from hypenta left outer join hyrelation on hyrelation.relationpentaid = hypenta.pentaid order by hypenta.pentaid desc limit ' + String(parseInt(page) * 10 + 25)
+const pageS = (page, type = 'hy', userid = 666) => {
+  let sql = `select hy.pentaid,hy.author,hy.imgurl,hy.time,hy.title,hy.url,a.views,a.likes,a.unlikes,l.likes as ilike,l.unlikes as iunlike,l.userid,l.type
+  from ${type}penta hy
+  left outer join ${type}relation a
+  on a.relationpentaid = hy.pentaid
+  left outer join allpentalike l
+  on l.pentaid = hy.pentaid and l.userid =  ${userid}
+  WHERE l.type='${type}' or l.type is NULL
+  order by hy.pentaid desc limit `
+    + String(parseInt(page) * 10 + 25)
   return exec(sql)
 }
 

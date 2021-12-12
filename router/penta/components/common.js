@@ -7,9 +7,10 @@ const querystring = require('querystring')
 const { pageS, viewS, viewLogS, like, likeLogS } = require('./service')
 
 // 虎牙五杀信息接口
-router.get('/:page', (req, res) => {
-  let { page } = req.params
-  pageS(page).then(result => {
+router.get('/:page/:type/:userid', (req, res) => {
+  console.log('page接口', req.params)
+  let { page, type, userid } = req.params
+  pageS(page, type = 'hy', userid).then(result => {
     res.json({
       result: result
     })

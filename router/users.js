@@ -96,7 +96,10 @@ router.post('/api/user/login', (req, res) => {
           });
           res.json({
             success: true,
-            result: "登陆成功"
+            result: {
+              userid: result[0].userid,
+              username: result[0].name
+            }
           })
         } else {
           res.json({

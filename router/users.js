@@ -80,6 +80,13 @@ router.post('/api/user/login', (req, res) => {
             path: '/',
             // signed: true, // 设置签名
           });
+          res.cookie("userid", result[0].userid, {
+            httpOnly: true, // 只允许后端修改
+            expires: false,
+            maxAge: 12 * 60 * 60 * 1000,
+            path: '/',
+            // signed: true, // 设置签名
+          });
           res.cookie("secret", result[0].name, {
             httpOnly: true, // 只允许后端修改
             expires: false,

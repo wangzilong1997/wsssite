@@ -27,7 +27,17 @@ app.use(cookieParser("wangzilongzhendeshuai"))
 // 用户相关路由
 app.use('/users', users)
 
+app.get('/4dbim/befast', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' })
 
+  fs.readFile(path.join(__dirname, '../befast/index.html'), 'utf-8', (err, data) => {
+    if (err) {
+      throw err
+    }
+    res.end(data)
+  })
+
+})
 
 // 检查中间件过滤cookie 检查是否有权限访问业务接口
 app.use((req, res, next) => {
@@ -61,6 +71,7 @@ app.get('/index', (req, res) => {
   })
 
 })
+
 
 
 var httpServer = http.createServer(app);

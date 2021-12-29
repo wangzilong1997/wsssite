@@ -1,0 +1,1955 @@
+<!--
+ * @Author: 王子龙
+ * @Date: 2021-12-29 11:19:35
+ * @LastEditTime: 2021-12-29 11:20:41
+ * @LastEditors: 王子龙
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <meta name="csrf-param" content="_csrf-power-pm">
+    <meta name="csrf-token" content="aSOX8S23EgXSz1o6Hx4g1NjEDVaDcLxEd3XrteGW_74dZtKfe4B3SOL6LXBYKUK4neluIddF7CgfPoKGh8egiw==">
+    <title>安全管理</title>
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/fe274804/css/bootstrap.css?v=1637285561" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2dc3aa99/css/bootstrap-datepicker3.css?v=1637285562" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2dc3aa99/css/datepicker-kv.css?v=1637285562" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/e9c368e2/css/bootstrap-datetimepicker3.css?v=1637285567" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/e9c368e2/css/datetimepicker-kv.css?v=1637285567" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/css/select2.css?v=1637285571" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/css/select2-addl.css?v=1637285570" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/b829ca3f/css/style.min.css?v=1637285574" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/d9d0379f/css/fileinput.min.css?v=1637285574" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/648e8ec7/Cesium/Widgets/widgets.css?v=1637285596" rel="stylesheet">
+    <link href="/power/pm/static/css/site.css?v=2.18" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/39ccc2eb/css/kv-widgets.css?v=1637543341" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/db261b26/css/daterangepicker.css?v=1637543341" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/db261b26/css/daterangepicker-kv.css?v=1637543341" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/45a95470/css/bootstrap-dialog-bs3.css?v=1637543351" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/a6c71c46/css/kv-grid.css?v=1637543349" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/a6c71c46/css/jquery.resizableColumns.css?v=1637543349" rel="stylesheet">
+    <link href="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/css/select2-krajee.css?v=1637285571" rel="stylesheet">
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/db261b26/js/moment.js?v=1637543348"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/db261b26/js/locales/zh-cn.js?v=1637543348"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/45a95470/js/dialog.js?v=1637543351"></script>
+    <script type="text/javascript">
+    window.kvDatepicker_f80a1247 = {
+        "autoclose": true,
+        "format": "yyyy-mm-dd",
+        "language": "zh-CN"
+    };
+
+    window.daterangepicker_434d62e8 = {
+        "cancelButtonClasses": "btn-default",
+        "language": "zh-cn",
+        "locale": {
+            "applyLabel": "确定",
+            "cancelLabel": "取消",
+            "fromLabel": "从",
+            "toLabel": "到",
+            "weekLabel": "周",
+            "customRangeLabel": "自选日期",
+            "daysOfWeek": moment.weekdaysMin(),
+            "monthNames": moment.monthsShort(),
+            "firstDay": moment.localeData()._week.dow
+        },
+        "autoUpdateInput": false
+    };
+
+    var krajeeDialogDefaults_33719062 = {
+        "alert": {
+            "type": "type-info",
+            "title": "信息提示",
+            "buttonLabel": "<span class=\"glyphicon glyphicon-ok\"></span> 确定"
+        },
+        "confirm": {
+            "type": "type-warning",
+            "title": "确认提示",
+            "btnOKClass": "btn-warning",
+            "btnOKLabel": "<span class=\"glyphicon glyphicon-ok\"></span> 确定",
+            "btnCancelLabel": "<span class=\"glyphicon glyphicon-ban-circle\"></span>  取消"
+        },
+        "prompt": {
+            "draggable": false,
+            "title": "信息提示",
+            "buttons": [{
+                "label": "取消",
+                "icon": "glyphicon glyphicon-ban-circle",
+                "cssClass": "btn-default"
+            }, {
+                "label": "确定",
+                "icon": "glyphicon glyphicon-ok",
+                "cssClass": "btn-primary"
+            }],
+            "closable": false
+        },
+        "dialog": {
+            "draggable": true,
+            "title": "信息提示",
+            "buttons": [{
+                "label": "取消",
+                "icon": "glyphicon glyphicon-ban-circle",
+                "cssClass": "btn-default"
+            }, {
+                "label": "确定",
+                "icon": "glyphicon glyphicon-ok",
+                "cssClass": "btn-primary"
+            }]
+        }
+    };
+    var krajeeDialog_e48a4427 = {
+        "id": "w1"
+    };
+    var krajeeDialog = new KrajeeDialog(true, krajeeDialog_e48a4427, krajeeDialogDefaults_33719062);
+    var kvexpmenu_81dd4559 = {
+        "target": "_blank",
+        "formOptions": {
+            "class": "kv-export-full-form",
+            "id": "w0-export-form"
+        },
+        "messages": {
+            "allowPopups": "请禁用浏览器弹出窗拦截器以确保正常下载。",
+            "confirmDownload": "确定继续?",
+            "downloadProgress": "正在生成导出文件，请稍后...",
+            "downloadComplete": "请求已提交!你可以在下载完文件后安全地关闭本对话框。"
+        },
+        "exportType": "Xlsx",
+        "colSelFlagParam": "column_selector_enabled",
+        "colSelEnabled": 0,
+        "exportRequestParam": "exportFull_w0",
+        "exportTypeParam": "export_type",
+        "exportColsParam": "export_columns",
+        "exportFormHiddenInputs": [],
+        "showConfirmAlert": true,
+        "dialogLib": "krajeeDialog"
+    };
+
+    var krajeeDialog_f6619723 = {
+        "id": "w7"
+    };
+    var krajeeDialog = new KrajeeDialog(true, krajeeDialog_f6619723, krajeeDialogDefaults_33719062);
+    var s2options_d6851687 = {
+        "themeCss": ".select2-container--krajee",
+        "sizeCss": "",
+        "doReset": true,
+        "doToggle": false,
+        "doOrder": false
+    };
+    window.select2_aab5df1b = {
+        "allowClear": true,
+        "theme": "krajee",
+        "width": "100%",
+        "placeholder": "全部",
+        "language": "zh-CN"
+    };
+
+    window.daterangepicker_70f9df1a = {
+        "ranges": {
+            "全部": [moment(0), moment(0)],
+            "今日": [moment().startOf('day'), moment().startOf('day')],
+            "昨日": [moment().startOf('day').subtract(1, 'days'), moment().startOf('day').subtract(1, 'days')],
+            "最近 7 日": [moment().startOf('day').subtract(7, 'days'), moment().endOf('day').subtract(-1, 'day')],
+            "最近 30 日": [moment().startOf('day').subtract(30, 'days'), moment().endOf('day').subtract(-1, 'day')],
+            "本月": [moment().startOf('month'), moment().endOf('month')],
+            "上月": [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        "locale": {
+            "format": "YYYY-MM-DD",
+            "separator": " - ",
+            "applyLabel": "确定",
+            "cancelLabel": "取消",
+            "fromLabel": "从",
+            "toLabel": "到",
+            "weekLabel": "周",
+            "customRangeLabel": "自选日期",
+            "daysOfWeek": moment.weekdaysMin(),
+            "monthNames": moment.monthsShort(),
+            "firstDay": moment.localeData()._week.dow
+        },
+        "timePicker": true,
+        "cancelButtonClasses": "btn-default",
+        "language": "zh-cn",
+        "autoUpdateInput": false
+    };
+
+    window.daterangepicker_e4db9cd2 = {
+        "ranges": {
+            "全部": [moment(0), moment(0)],
+            "今日": [moment().startOf('day'), moment().startOf('day')],
+            "昨日": [moment().startOf('day').subtract(1, 'days'), moment().startOf('day').subtract(1, 'days')],
+            "最近 7 日": [moment().startOf('day').subtract(7, 'days'), moment().endOf('day').subtract(-1, 'day')],
+            "最近 30 日": [moment().startOf('day').subtract(30, 'days'), moment().endOf('day').subtract(-1, 'day')],
+            "本月": [moment().startOf('month'), moment().endOf('month')],
+            "上月": [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        "timePickerIncrement": 15,
+        "locale": {
+            "format": "YYYY-MM-DD",
+            "separator": " - ",
+            "applyLabel": "确定",
+            "cancelLabel": "取消",
+            "fromLabel": "从",
+            "toLabel": "到",
+            "weekLabel": "周",
+            "customRangeLabel": "自选日期",
+            "daysOfWeek": moment.weekdaysMin(),
+            "monthNames": moment.monthsShort(),
+            "firstDay": moment.localeData()._week.dow
+        },
+        "timePicker": true,
+        "cancelButtonClasses": "btn-default",
+        "language": "zh-cn",
+        "autoUpdateInput": false
+    };
+    </script>
+</head>
+
+<body>
+    <script>
+    !(function(c, b, d, a) {
+        c[a] || (c[a] = {});
+        c[a].config = {
+            pid: "bgu54y4mqm@68e42b9da4f0c55"
+        };
+        if (!c.hasBLjs) {
+            c.hasBLjs = true;
+            with (b)
+                with (body)
+                    with (insertBefore(createElement("script"), firstChild))
+                        setAttribute("crossorigin", "", src = d)
+        }
+    })(window, document, "https://retcode.alicdn.com/retcode/bl.js", "__bl");
+    </script>
+
+    <div id="common-modal" class="fade modal" role="dialog" tabindex="-1">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modalTitle"></h3>
+                </div>
+                <div class="modal-body">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <input id="projectID" type="hidden" value="584">
+        <nav id="w8" class="navbar navbar-inverse navbar-fixed-top LtTop">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w8-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/power/pm/project/manage?projectID=584">华星光电测试项目</a>
+                </div>
+                <div id="w8-collapse" class="collapse navbar-collapse">
+                    <ul id="w9" class="nav navbar-nav">
+                        <li class="projectStyle">
+                            <a href="#">项目列表</a>
+                        </li>
+                        <li class="appStyle">
+                            <a href="#">方案应用</a>
+                        </li>
+                    </ul>
+                    <ul id="w10" class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                王子龙 
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="w11" class="dropdown-menu">
+                                <li>
+                                    <form action="/site/logout" method="post">
+                                        <button type="submit" class="exitStyle">
+                                            <span class="glyphicon glyphicon-log-out navIcon"></span>
+                                            注销
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                中文(简体) 
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="dropdown-language" class="dropdown-menu" style="min-width:90px;">
+                                <li class="active">
+                                    <a href="/power/pm/site/language?language=zh-CN" tabindex="-1">中文(简体)</a>
+                                </li>
+                                <li>
+                                    <a href="/power/pm/site/language?language=zh-TW" tabindex="-1">中文(繁体)</a>
+                                </li>
+                                <li>
+                                    <a href="/power/pm/site/language?language=en" tabindex="-1">英文</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="appBox col-md-12 col-sm-12">
+            <div class="col-md-10">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="appTitle org" href="/power/pm/org">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/org.png" alt="人员管理">
+                            <div class="appTitleName">人员管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle quality" href="/power/pm/quality-issue">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/issue.png" alt="质量管理">
+                            <div class="appTitleName">质量管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle safety" href="/power/pm/safety">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/safety.png" alt="安全管理">
+                            <div class="appTitleName">安全管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle material" href="/power/pm/material">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/material.png" alt="材料管理">
+                            <div class="appTitleName">材料管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle machine" href="/power/pm/machine">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/machine.png" alt="机械管理">
+                            <div class="appTitleName">机械管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle quantity" href="/power/pm/quantity">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/quantity.png" alt="进度管理">
+                            <div class="appTitleName">进度管理                                </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="appTitle document" href="/pv/explorer/index?project_id=584">
+                            <img class="appTitleIcon" src="/power/pm/static/imgs/document.png" alt="档案管理">
+                            <div class="appTitleName">档案管理                                </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="projectBox col-md-12">
+            <div class="projectList col-md-12">
+                <span onclick="window.location.href='/power/pm/project/manage?projectID=490'" project="490">新平台一阶段迁移测试</span>
+                <span onclick="window.location.href='/power/pm/project/manage?projectID=584'" project="584">华星光电测试项目</span>
+            </div>
+        </div>
+        <!-- BEGIN LEFT NAV-->
+        <span class="leftZoom"></span>
+        <div class="leftNavBackground">
+            <div id="leftnav" class="leftNav safetyLeft">
+                <div id="w12" class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="collapse-toggle" href="#w12-collapse1" data-toggle="collapse" data-parent="#w12">安全管理</a>
+                            </h4>
+                        </div>
+                        <div id="w12-collapse1" class="leftNavStyle in panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/index" class="active">安全问题</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/deduction">安全评分</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="collapse-toggle" href="#w12-collapse2" data-toggle="collapse" data-parent="#w12">基础信息</a>
+                            </h4>
+                        </div>
+                        <div id="w12-collapse2" class="leftNavStyle panel-collapse collapse">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/rule">安全评分规则</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/item">安全评分项</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/issue/attr">设置问题字段</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/issue/config">配置问题字段</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/safety/issue/notice">配置整改单</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/region-rel-subject?tagTypeId=2">区域与专业</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/power/pm/rectification?tagTypeId=2">缺失整改</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- END LEFT NAV-->
+
+        <!-- BEGIN CONTENT-->
+        <div class="conter" style="margin-left: 240px;">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/power/pm/project/manage?projectID=584">首页</a>
+                </li>
+                <li class="active">安全管理 -- 安全问题</li>
+            </ul>
+
+            <div id="add-issue-modal" class="fade modal" role="dialog" tabindex="-1">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modelTitle">新建问题</h3>
+                        </div>
+                        <div class="modal-body">
+                            <style>
+                            .row {
+                                margin-left: -10px;
+                            }
+
+                            .required-field {
+                                color: red;
+                            }
+                            </style>
+                            <div class="quality-issue-form">
+
+                                <form id="new" class="form-horizontal" action="/power/pm/safety/issue/create" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="_csrf-power-pm" value="aSOX8S23EgXSz1o6Hx4g1NjEDVaDcLxEd3XrteGW_74dZtKfe4B3SOL6LXBYKUK4neluIddF7CgfPoKGh8egiw==">
+                                    <input type="hidden" name="action" value="new">
+                                    <!--    严重程度-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-levelid required">
+                                            <label class="control-label col-sm-2" for="qualityissue-levelid">
+                                                <span class="required-field">*</span>
+                                                严重程度
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select id="qualityissue-levelid" class="form-control" name="QualityIssue[LevelID]" aria-required="true">
+                                                    <option value="1">王子龙添加严重程度0</option>
+                                                </select>
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--    整改时限-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-deadline required">
+                                            <label class="control-label col-sm-2" for="qualityissue-deadline">
+                                                <span class="required-field">*</span>
+                                                整改时限
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="qualityissue-deadline" class="form-control krajee-datepicker" name="QualityIssue[Deadline]" readonly aria-required="true" data-datepicker-source="qualityissue-deadline" data-datepicker-type="1" data-krajee-kvDatepicker="kvDatepicker_f80a1247">
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--    区域划分-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-regiontagid required">
+                                            <label class="control-label col-sm-2" for="qualityissue-regiontagid">
+                                                <span class="required-field">*</span>
+                                                区域划分
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select id="qualityissue-regiontagid" class="regionID form-control" name="QualityIssue[RegionTagID]" aria-required="true">
+                                                    <option value="1">王子龙添加区域0</option>
+                                                    <option value="2">王子龙添加区域1</option>
+                                                </select>
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--    专业分类-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-subjecttagid required">
+                                            <label class="control-label col-sm-2" for="qualityissue-subjecttagid">
+                                                <span class="required-field">*</span>
+                                                专业分类
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select id="qualityissue-subjecttagid" class="form-control" name="QualityIssue[SubjectTagID]" aria-required="true">
+                                                    <option value="1">王子龙添加专业0</option>
+                                                </select>
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    所属面板-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-dashboardid required">
+                                            <label class="control-label col-sm-2" for="qualityissue-dashboardid">
+                                                <span class="required-field">*</span>
+                                                所属面板
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select id="qualityissue-dashboardid" class="form-control" name="QualityIssue[DashboardID]" aria-required="true">
+                                                    <option value="0">默认面板</option>
+                                                </select>
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    检查项目-->
+                                    <div class="col-md-6 row">
+                                        <div class="form-group field-qualityissue-dashboardid">
+                                            <label class="control-label col-sm-4" for="qualityissue-dashboardid">检查项目</label>
+                                            <div class="col-sm-8">
+                                                <select id="InspectProject" class="form-control" name="" onfocus="Inspect(this)" style="width: 90%;">
+                                                </select>
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    扣分标准-->
+                                    <div class="col-md-6 row" style="margin-right: 300px;">
+                                        <div class="form-group field-qualityissue-dashboardid">
+                                            <label class="control-label col-sm-4" for="qualityissue-dashboardid">扣分标准</label>
+                                            <div class="col-sm-8">
+                                                <input id="qualityissue-regiontagid" class="form-control pointsData" name="" onclick="BranchS()">
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--    -->
+                                    <div class="form-group field-qualityissue-description">
+                                        <label class="control-label col-sm-2" for="qualityissue-description">评分备注</label>
+                                        <div class="col-sm-8" style="width: 73%;">
+                                            <textarea id="qualityissue-remarks" class="form-control" name="" maxlength="1000"></textarea>
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    问题状态-->
+                                    <div class="problem-status">
+                                        <fieldset disabled>
+                                            <div class="form-group field-qualityissue-issueaction">
+                                                <label class="control-label col-sm-2">问题状态</label>
+                                                <div class="col-sm-8">
+                                                    <input type="hidden" name="QualityIssue[IssueAction]" value="">
+                                                    <div id="qualityissue-issueaction">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="QualityIssue[IssueAction][]" value="1" checked>
+                                                                 请整改
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="QualityIssue[IssueAction][]" value="2">
+                                                                 整改完成
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="QualityIssue[IssueAction][]" value="3">
+                                                                 验收完成
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="QualityIssue[IssueAction][]" value="4">
+                                                                 重新整改
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="QualityIssue[IssueAction][]" value="5">
+                                                                 拒绝整改
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="help-block help-block-error "></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <!--    问题描述-->
+                                    <div class="form-group field-qualityissue-description required">
+                                        <label class="control-label col-sm-2" for="qualityissue-description">
+                                            <span class="required-field">*</span>
+                                            问题描述
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea id="qualityissue-description" class="form-control" name="QualityIssue[Description]" maxlength="1000" aria-required="true"></textarea>
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    问题位置-->
+                                    <div class="form-group field-qualityissue-location required">
+                                        <label class="control-label col-sm-2" for="qualityissue-location">
+                                            <span class="required-field">*</span>
+                                            问题位置
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea id="qualityissue-location" class="form-control" name="QualityIssue[Location]" maxlength="255" aria-required="true"></textarea>
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    整改要求-->
+                                    <div class="form-group field-qualityissue-rectification required">
+                                        <label class="control-label col-sm-2" for="qualityissue-rectification">
+                                            <span class="required-field">*</span>
+                                            整改要求
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <textarea id="qualityissue-rectification" class="form-control" name="QualityIssue[Rectification]" maxlength="1000" aria-required="true"></textarea>
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    经办人员-->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            <span class="required-field">*</span>
+                                                                                经办人员                            
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <select id="qualityissue-operatortype" class="form-control issueRole" name="issueRole">
+                                                <option value="1" selected>管理员</option>
+                                                <option value="3">整改人</option>
+                                            </select>
+                                            <input type="text" id="qualityissue-operators" class="operators form-control" name="" value="" placeholder="搜索经办人">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group field-qualityissue-operatorids required">
+                                        <label class="control-label col-sm-2">经办人员</label>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" name="QualityIssue[OperatorIDs]" value="">
+                                            <div id="qualityissue-operatorids" class="qualityissue-operatorids" aria-required="true"></div>
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    抄送人员-->
+                                    <!--        这里写抄送人-->
+                                    <div class="copy-person-box">
+
+                                        <input type="hidden" name="QualityIssue[CC]" value="[]" class="cc-input"/>
+                                        <div class="form-group field-qualityissue-cc required">
+                                            <label class="control-label col-sm-2" for="qualityissue-cc">
+                                                <span class="required-field">*</span>
+                                                抄送人员
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="qualityissue-cc" class="copy-person form-control" name="" value="" placeholder="搜索抄送人" aria-required="true">
+
+                                                <div class="help-block help-block-error "></div>
+                                            </div>
+                                        </div>
+                                        <div class="cc-name-box"></div>
+
+                                    </div>
+
+                                    <!--    问题图片-->
+                                    <div class="form-group field-qualityissue-picurls required">
+                                        <label class="control-label col-sm-2" for="qualityissue-picurls">
+                                            <span class="required-field">*</span>
+                                            问题图片
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" name="QualityIssue[PicUrls][]" value="">
+                                            <input type="file" id="qualityissue-picurls" name="QualityIssue[PicUrls][]" multiple accept="image/jpg,image/jpeg,image/png,image/gif,video/mp4,video/mpeg,video/avi,video/rm,video/wmv,video/rmvb">
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    是否匿名-->
+                                    <div class="form-group field-qualityissue-anonymous">
+                                        <label class="control-label col-sm-2">是否匿名</label>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" name="QualityIssue[Anonymous]" value="">
+                                            <div id="qualityissue-anonymous">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="QualityIssue[Anonymous]" value="0" checked>
+                                                         否
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="QualityIssue[Anonymous]" value="1">
+                                                         是
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--    整改人员-->
+                                    <div class="form-group field-qualityissue-rectificator">
+                                        <label class="control-label col-sm-2" for="qualityissue-rectificator">整改人员</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="qualityissue-rectificator" class="form-control" name="QualityIssue[Rectificator]">
+
+                                            <div class="help-block help-block-error "></div>
+                                        </div>
+                                    </div>
+                                    <!--        -->
+                                    <input type="hidden" value="" name="QualityIssue[scoreLogID]" class="ScoreLogIDS">
+
+                                    <div class="form-group importSubmit">
+                                        <!--        -->
+                                        <button type="button" class="btn btn-primary issue-button BranchAdd">创建</button>
+                                        <button type="reset" class="btn btn-default">重置</button>
+                                    </div>
+                                    <input type="hidden" value="584" id="project_ID">
+                                </form>
+                            </div>
+
+                            <div class="BranchFrame" style="width: 50%;height: 500px;left: 200px;z-index: 999;position: absolute;top: 250px;background-color: white;border: 1px solid;display: none;overflow: overlay;">
+                                <div class="quality-issue-form">
+                                    <div class="modal-header">
+                                        <h3 class="modelTitle">扣分标准</h3>
+                                    </div>
+                                    <div class="form-group importSubmits" style="min-height: 300px;position: relative;">
+                                        <div class="Branch1">
+                                        </div>
+                                        <div class="Branch2">
+                                        </div>
+                                        <input type="hidden" value="" class="BranchData">
+                                        <div style="text-align: center;position: absolute;bottom: -100px;width: 100%;height: 80px;">
+                                            <button type="button" class="btn" onclick="BranchShut()">取消</button>
+                                            <button type="button" class="btn issue-button BranchShutS" id="but_add" style="color: #fff;background-color: #337ab7;border-color: #2e6da4;text-align: center;margin-left: 20px;">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="issue-index" class="staff-index tab-content">
+                <!--    -->
+                <style>
+                .kv-all-select, .kv-row-select {
+                    display: none;
+                }
+
+                .select2-container--krajee .select2-selection--single .select2-selection__clear {
+                    right: 0px;
+                    top: -41px;
+                    color: #000;
+                }
+
+                .select2-container--krajee .select2-selection--single {
+                    padding: 6px 24px 6px 4px;
+                }
+
+                .range-value {
+                    width: 70px;
+                    overflow: hidden;
+                    /*text-overflow: ellipsis;*/
+                    white-space: nowrap;
+                    display: inline-block;
+                }
+
+                .calendar-time {
+                    display: none
+                }
+
+                .show-calendar {
+                    left: auto !important;
+                    right: 0px !important;
+                }
+
+                td .issueCommon, .issueCommon .issueStatus {
+                    height: 86px !important;
+                }
+
+                td .issueRectifier .issueStatus {
+                    height: 83px !important;
+                    width: 100px;
+                }
+
+                td .issueRectifier {
+                    display: block;
+                    width: 80%;
+                    height: 85px;
+                    color: #000;
+                }
+
+                .issueRectifier:hover, .issueRectifier:focus {
+                    text-decoration: none;
+                    color: #000;
+                }
+
+                .seriousType {
+                    width: 80px;
+                    word-wrap: break-word;
+                }
+
+                .limitQuantity {
+                    width: 110px;
+                    word-wrap: break-word;
+                }
+
+                .issueLocation, .issueDescription, .issueRectification {
+                    width: 134px;
+                    -webkit-line-clamp: 4;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .kv-drp-dropdown .right-ind {
+                    right: 6px;
+                }
+
+                .table-bordered > thead > tr > td:nth-last-of-type(2) {
+                    min-width: 190px;
+                }
+
+                .table-bordered > thead > tr > td:nth-last-of-type(1) {
+                    min-width: 190px;
+                }
+
+                #export-button {
+                    right: 110px;
+                    position: absolute;
+                    float: right;
+                }
+
+                .createdBy {
+                    min-width: 73px;
+                }
+
+                .daterangepicker.opensright:after, .daterangepicker.opensright:before {
+                    left: 0 !important;
+                }
+
+                .daterangepicker:after, .daterangepicker:before {
+                    top: 0;
+                    border-right: 0;
+                    border-left: 0;
+                    border-bottom: 0;
+                }
+                </style>
+
+                <style>
+                .reset-grid {
+                    right: 126px;
+                }
+                </style>
+
+                <div id="w4-pjax" data-pjax-container="" data-pjax-push-state data-pjax-timeout="1000">
+                    <div class="kv-loader-overlay">
+                        <div class="kv-loader"></div>
+                    </div>
+                    <div id="w4" class="grid-view is-bs3 hide-resize" data-krajee-grid="kvGridInit_84295dd8" data-krajee-ps="ps_w4_container">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="pull-right">
+                                    <div class="summary">
+                                        第
+                                        <b>1-3</b>
+                                        条，共
+                                        <b>3</b>
+                                        条数据.
+                                    </div>
+                                </div>
+                                <h3 class="panel-title">
+                                    <i class="glyphicon glyphicon-th-list"></i>
+                                     安全问题
+                                </h3>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="kv-panel-before">
+                                <div class="btn-toolbar kv-grid-toolbar toolbar-container pull-right">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default reset-grid" href="/power/pm/safety/issue/index" title="重置表格" data-pjax="0">
+                                            <i class="glyphicon glyphicon-repeat"></i>
+                                        </a>
+                                    </div>
+                                    <button type="button" id="export-button" class="btn btn-default" data-pjax="0">导出当前页</button>
+                                    <div class="btn-group" role="group">
+                                        <div class="btn-group mr-2">
+                                            <button id="w2" class="btn btn-default dropdown-toggle" title="以选定格式导出数据" data-toggle="dropdown">
+                                                <i class="glyphicon glyphicon-export"></i>
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <ul id="w3" class="dropdown-menu">
+                                                <li title="Microsoft Excel 2007+ (xlsx)">
+                                                    <a id="w0-xlsx" class="export-full-xlsx" href="#" data-format="Xlsx" tabindex="-1">
+                                                        <i class="text-success glyphicon glyphicon-floppy-remove"></i>
+                                                         Excel
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-sm create-public-issue" href="/power/pm/safety/create" data-toggle="modal" data-target="#add-issue-modal">新建问题</a>
+                                <button class="btn btn-primary btn-sm to-public-issue">公开问题</button>
+                                <form id="public-issue" style="display: inline-block;margin-left: 10px;" action="/power/pm/safety/issue/public" method="post" enctype="multipart/form-data">
+                                    <input name="_csrf-power-pm" type="hidden" value="aSOX8S23EgXSz1o6Hx4g1NjEDVaDcLxEd3XrteGW_74dZtKfe4B3SOL6LXBYKUK4neluIddF7CgfPoKGh8egiw==">
+                                    <input type="hidden" name="issueIds" value="" class="public-issue-input">
+                                    <input type="hidden" name="privateIds" value="" class="private-issue-input">
+                                    <button data-confirm="确定公开选中的问题?" class="btn btn-primary btn-sm public-issue-submit action-button" type="submit" disabled>确定</button>
+                                </form>
+                                <button class="btn btn-default btn-sm cancel-public-issue action-button action-private-button">取消</button>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="w4-container" class="table-responsive kv-grid-container">
+                                <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
+                                    <colgroup>
+                                        <col class="skip-export">
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+
+                                        <tr>
+                                            <th class="kv-all-select kv-align-center kv-align-middle skip-export kv-merged-header" width="5" style="width:50px;" rowspan="2" data-col-seq="0">
+                                                <input type="checkbox" class="select-on-check-all" name="selection_all" value="1">
+                                            </th>
+                                            <th class="kv-align-center kv-align-middle kv-merged-header" width="5" style="width:50px;" rowspan="2" data-col-seq="1">#</th>
+                                            <th width="100" data-col-seq="2">问题图片</th>
+                                            <th class="issueDashboard" style="width:120px;" data-col-seq="3">所属面板</th>
+                                            <th class="issueThLDR" style="width:120px;" data-col-seq="4">问题位置</th>
+                                            <th class="issueThLDR" style="width:150px;" data-col-seq="5">问题描述</th>
+                                            <th class="issueThLDR" data-col-seq="6">整改要求</th>
+                                            <th class="issueRegion" style="width:70px;" data-col-seq="7">区域划分</th>
+                                            <th class="issueSubject" style="width:70px;" data-col-seq="8">专业分类</th>
+                                            <th style="width:70px;" data-col-seq="9">严重程度</th>
+                                            <th style="width:90px;" data-col-seq="10">发起人员</th>
+                                            <th style="width:90px;" data-col-seq="11">经办人员</th>
+                                            <th style="width:90px;" data-col-seq="12">整改人员</th>
+                                            <th style="width:90px;" data-col-seq="13">问题状态</th>
+                                            <th style="width:190px;" data-col-seq="14">发起时间</th>
+                                            <th style="width:190px;" data-col-seq="15">整改时限</th>
+                                        </tr>
+                                        <tr id="w4-filters" class="filters skip-export">
+                                            <td>
+                                                <select id="searchqualityissue-public" name="SearchQualityIssue[Public]">
+                                                    <option value="">全部</option>
+                                                    <option value="0">未公开</option>
+                                                    <option value="1">公开</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="searchqualityissue-dashboardid" name="SearchQualityIssue[DashboardID]">
+                                                    <option value="">全部</option>
+                                                    <option value="0">默认面板</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="SearchQualityIssue[Location]">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="SearchQualityIssue[Description]">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="SearchQualityIssue[Rectification]">
+                                            </td>
+                                            <td>
+                                                <select id="searchqualityissue-regiontagid" name="SearchQualityIssue[RegionTagID]">
+                                                    <option value="">全部</option>
+                                                    <option value="1">王子龙添加区域0</option>
+                                                    <option value="2">王子龙添加区域1</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="searchqualityissue-subjecttagid" name="SearchQualityIssue[SubjectTagID]">
+                                                    <option value="">全部</option>
+                                                    <option value="1">王子龙添加专业0</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select id="searchqualityissue-levelid" name="SearchQualityIssue[LevelID]">
+                                                    <option value="">全部</option>
+                                                    <option value="1">王子龙添加严重程度0</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div class="kv-plugin-loading loading-searchqualityissue-createdby">&nbsp;</div>
+                                                <select id="searchqualityissue-createdby" class="form-control" name="SearchQualityIssue[CreatedBy]" data-s2-options="s2options_d6851687" data-krajee-select2="select2_aab5df1b" style="display:none">
+                                                    <option value="">全部</option>
+                                                    <option value="1">管理员</option>
+                                                    <option value="4">郭海东</option>
+                                                    <option value="2">王子龙</option>
+                                                    <option value="3">王欣月</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="searchqualityissue-operatorname" name="SearchQualityIssue[OperatorName]">
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <select id="searchqualityissue-issueaction" name="SearchQualityIssue[IssueAction]">
+                                                    <option value="">全部</option>
+                                                    <option value="1">请整改</option>
+                                                    <option value="2">整改完成</option>
+                                                    <option value="3">验收完成</option>
+                                                    <option value="4">重新整改</option>
+                                                    <option value="5">拒绝整改</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div id="searchqualityissue-createdat-container" class="kv-drp-container">
+                                                    <div class="kv-drp-dropdown">
+                                                        <span class="left-ind">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </span>
+                                                        <input type="text" readonly class="form-control range-value" value="">
+                                                        <span class="right-ind">
+                                                            <b class="caret"></b>
+                                                        </span>
+                                                    </div>
+                                                    <input type="hidden" id="searchqualityissue-createdat" class="form-control" name="SearchQualityIssue[CreatedAt]" data-krajee-daterangepicker="daterangepicker_70f9df1a">
+                                                    <input type="hidden" id="searchqualityissue-createdat-start" name="SearchQualityIssue[CreatedAtStartDate]" value="1970-01-01 08:00:00">
+                                                    <input type="hidden" id="searchqualityissue-createdat-end" name="SearchQualityIssue[CreatedAtEndDate]" value="1970-01-01 08:00:00">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="searchqualityissue-deadline-container" class="kv-drp-container">
+                                                    <div class="kv-drp-dropdown">
+                                                        <span class="left-ind">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </span>
+                                                        <input type="text" readonly class="form-control range-value" value="">
+                                                        <span class="right-ind">
+                                                            <b class="caret"></b>
+                                                        </span>
+                                                    </div>
+                                                    <input type="hidden" id="searchqualityissue-deadline" class="form-control" name="SearchQualityIssue[Deadline]" data-krajee-daterangepicker="daterangepicker_e4db9cd2">
+                                                    <input type="hidden" id="searchqualityissue-deadline-start" name="SearchQualityIssue[DeadlineStartDate]" value="1970-01-01 08:00:00">
+                                                    <input type="hidden" id="searchqualityissue-deadline-end" name="SearchQualityIssue[DeadlineEndDate]" value="1970-01-01 08:00:00">
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr data-key="0">
+                                            <td class="skip-export kv-align-center kv-align-middle kv-row-select" style="width:50px;" data-col-seq="0">
+                                                <input type="checkbox" class="kv-row-checkbox" name="selection[]" value="3">
+                                            </td>
+                                            <td class="kv-align-center kv-align-middle" style="width:50px;" data-col-seq="1">1</td>
+                                            <td data-col-seq="2">
+                                                <a class="issueImgBox" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">
+                                                    <img class='issueImg' src="https://cdn.prj-dev.cbim.ren/d_f.power.4dbim.vip/project/prj_584/wechat/image/8c480715f0fe6b3b82b9a6e8c9622371.png?x-oss-process=image/resize,w_80,h_80"/>
+                                                </a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="3">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">默认面板</a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="4">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">
+                                                    <div class="issueLocation">1</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:150px;" data-col-seq="5">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">
+                                                    <div class="issueDescription">1</div>
+                                                </a>
+                                            </td>
+                                            <td data-col-seq="6">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">
+                                                    <div class="issueRectification">1</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="7">
+                                                <a class="issueCommon limitQuantity" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">王子龙添加区域0</a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="8">
+                                                <a class="issueCommon limitQuantity" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">王子龙添加专业0</a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="9">
+                                                <a class="issueCommon seriousType" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">王子龙添加严重程度0</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="10">
+                                                <a class="issueCommon createdBy" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">王子龙</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="11">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">
+                                                    <div class="issueStatus">
+                                                        王子龙
+                                                        <br/>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="12">
+                                                <a class="issueRectifier" href="/power/pm/quality-issue/view?ID=3&amp;ProjectID=584">
+                                                    <div class="issueStatus">王子龙</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="13">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">整改完成</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="14">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="15">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=3&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                        </tr>
+                                        <tr data-key="1">
+                                            <td class="skip-export kv-align-center kv-align-middle kv-row-select" style="width:50px;" data-col-seq="0">
+                                                <input type="checkbox" class="kv-row-checkbox" name="selection[]" value="2">
+                                            </td>
+                                            <td class="kv-align-center kv-align-middle" style="width:50px;" data-col-seq="1">2</td>
+                                            <td data-col-seq="2">
+                                                <a class="issueImgBox" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">
+                                                    <img class='issueImg' src='../../../power/pm/static/imgs/nullImg.jpg' style='width: 80px;height: 80px'/>
+                                                </a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="3">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">默认面板</a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="4">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">
+                                                    <div class="issueLocation"></div>
+                                                </a>
+                                            </td>
+                                            <td style="width:150px;" data-col-seq="5">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">
+                                                    <div class="issueDescription"></div>
+                                                </a>
+                                            </td>
+                                            <td data-col-seq="6">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">
+                                                    <div class="issueRectification"></div>
+                                                </a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="7">
+                                                <a class="issueCommon limitQuantity" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">王子龙添加区域0</a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="8">
+                                                <a class="issueCommon limitQuantity" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">王子龙添加专业0</a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="9">
+                                                <a class="issueCommon seriousType" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">王子龙添加严重程度0</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="10">
+                                                <a class="issueCommon createdBy" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">王子龙</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="11">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">
+                                                    <div class="issueStatus">
+                                                        王子龙
+                                                        <br/>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="12">
+                                                <a class="issueRectifier" href="/power/pm/quality-issue/view?ID=2&amp;ProjectID=584"></a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="13">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">请整改</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="14">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="15">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=2&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                        </tr>
+                                        <tr data-key="2">
+                                            <td class="skip-export kv-align-center kv-align-middle kv-row-select" style="width:50px;" data-col-seq="0">
+                                                <input type="checkbox" class="kv-row-checkbox" name="selection[]" value="1">
+                                            </td>
+                                            <td class="kv-align-center kv-align-middle" style="width:50px;" data-col-seq="1">3</td>
+                                            <td data-col-seq="2">
+                                                <a class="issueImgBox" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">
+                                                    <img class='issueImg' src='../../../power/pm/static/imgs/nullImg.jpg' style='width: 80px;height: 80px'/>
+                                                </a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="3">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">默认面板</a>
+                                            </td>
+                                            <td style="width:120px;" data-col-seq="4">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">
+                                                    <div class="issueLocation">1</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:150px;" data-col-seq="5">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">
+                                                    <div class="issueDescription">1</div>
+                                                </a>
+                                            </td>
+                                            <td data-col-seq="6">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">
+                                                    <div class="issueRectification">1</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="7">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584"></a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="8">
+                                                <a class="issueCommon limitQuantity" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">王子龙添加专业0</a>
+                                            </td>
+                                            <td style="width:70px;" data-col-seq="9">
+                                                <a class="issueCommon seriousType" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">王子龙添加严重程度0</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="10">
+                                                <a class="issueCommon createdBy" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">王子龙</a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="11">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">
+                                                    <div class="issueStatus">
+                                                        王子龙
+                                                        <br/>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="12">
+                                                <a class="issueRectifier" href="/power/pm/quality-issue/view?ID=1&amp;ProjectID=584">
+                                                    <div class="issueStatus">王子龙</div>
+                                                </a>
+                                            </td>
+                                            <td style="width:90px;" data-col-seq="13">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">请整改</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="14">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                            <td style="width:190px;" data-col-seq="15">
+                                                <a class="issueCommon" href="/power/pm/safety/issue/view?ID=1&amp;ProjectID=584">2021-12-27</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="kv-panel-after"></div>
+                            <div class="panel-footer">
+                                <div class="kv-panel-pager">
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--    -->
+            </div>
+
+            <!--</div>-->
+
+        </div>
+        <!-- END CONTENT-->
+    </div>
+
+    <div class="homeFooter" id="footer">
+        <div class="text-center homeFooterText">
+            <a href="http://www.c-bim.net/">北京云建信科技有限公司</a>
+
+                        版权所有-京ICP备16021345号-1            
+            <span> 当前版本 4.26.1</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/377beb38/jquery.js?v=1637285561"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/3dd4e24c/yii.js?v=1637285560"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2dc3aa99/js/bootstrap-datepicker.js?v=1637285563"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2dc3aa99/js/datepicker-kv.js?v=1637285563"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2dc3aa99/js/locales/bootstrap-datepicker.zh-CN.min.js?v=1637285567"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/e9c368e2/js/bootstrap-datetimepicker.js?v=1637285567"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/js/select2.full.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/js/select2-krajee.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/592ef71c/js/i18n/zh-CN.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/2d97106a/js/jquery.placeholder.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/4349c8b1/js/jquery.xpath.min.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/b829ca3f/js/jstree.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/b829ca3f/js/jstree.min.js?v=1637285574"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/d9d0379f/js/fileinput.min.js?v=1637285575"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/d9d0379f/js/zh.js?v=1637285575"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/266341ad/js/polyfill.min.js?v=1637285575"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/648e8ec7/Cesium/Cesium.js?v=1637285587"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/648e8ec7/js/configured-cesium.js?v=1637285599"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/648e8ec7/js/helper.js?v=1637285599"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/495e0e6f/js/echarts.min.js?v=1637285600"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/495e0e6f/js/echarts-tooltip-carousel.js?v=1637285600"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/495e0e6f/js/echartStyle.js?v=1637285600"></script>
+    <script src="/power/pm/static/js/i18n/asset/jquery.i18n.properties.js?v=1637222091"></script>
+    <script src="/power/pm/static/js/common.js?v=1637222091"></script>
+    <script src="/power/pm/static/js/batchProcessForm.js" 0="pm\assets\AppAsset"></script>
+    <script src="/power/pm/static/js/safety.js" 0="pm\assets\AppAsset"></script>
+    <script src="/power/pm/static/js/commonIssue.js" 0="pm\assets\AppAsset"></script>
+    <script src="/power/pm/static/js/required.js" 0="pm\assets\AppAsset"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/3dd4e24c/yii.validation.js?v=1637285560"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/39ccc2eb/js/kv-widgets.js?v=1637543341"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/3dd4e24c/yii.activeForm.js?v=1637285560"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/fe274804/js/bootstrap.js?v=1637285562"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/db261b26/js/daterangepicker.js?v=1637543341"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/a6c71c46/js/kv-grid-checkbox.js?v=1637543349"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/45a95470/js/bootstrap-dialog.js?v=1637543351"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/45a95470/js/dialog-yii.js?v=1637543351"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/6029c7f6/js/kv-export-data.js?v=1637543351"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/a6c71c46/js/kv-grid-export.js?v=1637543350"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/a6c71c46/js/jquery.resizableColumns.js?v=1637543349"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/3dd4e24c/yii.gridView.js?v=1637285560"></script>
+    <script src="https://cdn.cache.cbim.ren/planet/d_f.power.4dbim.vip/web_asset/133df0bd/jquery.pjax.js?v=1637543356"></script>
+    <script type="text/javascript">
+    jQuery(function($) {
+        jQuery.fn.kvDatepicker.dates = {};
+        jQuery && jQuery.pjax && (jQuery.pjax.defaults.maxCacheLength = 0);
+        if (jQuery('#qualityissue-deadline').data('kvDatepicker')) {
+            jQuery('#qualityissue-deadline').kvDatepicker('destroy');
+        }
+        jQuery('#qualityissue-deadline').kvDatepicker(kvDatepicker_f80a1247);
+
+        jQuery('#new').yiiActiveForm([{
+            "id": "qualityissue-levelid",
+            "name": "LevelID",
+            "container": ".field-qualityissue-levelid",
+            "input": "#qualityissue-levelid",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.number(value, messages, {
+                    "pattern": /^\s*[+-]?\d+\s*$/,
+                    "message": "严重程度必须是整数。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "严重程度不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-deadline",
+            "name": "Deadline",
+            "container": ".field-qualityissue-deadline",
+            "input": "#qualityissue-deadline",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.required(value, messages, {
+                    "message": "整改时限不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-regiontagid",
+            "name": "RegionTagID",
+            "container": ".field-qualityissue-regiontagid",
+            "input": "#qualityissue-regiontagid",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.number(value, messages, {
+                    "pattern": /^\s*[+-]?\d+\s*$/,
+                    "message": "区域划分必须是整数。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "区域划分不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-subjecttagid",
+            "name": "SubjectTagID",
+            "container": ".field-qualityissue-subjecttagid",
+            "input": "#qualityissue-subjecttagid",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.number(value, messages, {
+                    "pattern": /^\s*[+-]?\d+\s*$/,
+                    "message": "专业分类必须是整数。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "专业分类不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-dashboardid",
+            "name": "DashboardID",
+            "container": ".field-qualityissue-dashboardid",
+            "input": "#qualityissue-dashboardid",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.number(value, messages, {
+                    "pattern": /^\s*[+-]?\d+\s*$/,
+                    "message": "所属面板必须是整数。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "所属面板不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-issueaction",
+            "name": "IssueAction",
+            "container": ".field-qualityissue-issueaction",
+            "input": "#qualityissue-issueaction",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.number(value, messages, {
+                    "pattern": /^\s*[+-]?\d+\s*$/,
+                    "message": "问题状态必须是整数。",
+                    "skipOnEmpty": 1
+                });
+            }
+        }, {
+            "id": "qualityissue-description",
+            "name": "Description",
+            "container": ".field-qualityissue-description",
+            "input": "#qualityissue-description",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "问题描述必须是一条字符串。",
+                    "max": 1000,
+                    "tooLong": "问题描述只能包含至多1,000个字符。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "问题描述不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-location",
+            "name": "Location",
+            "container": ".field-qualityissue-location",
+            "input": "#qualityissue-location",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "问题位置必须是一条字符串。",
+                    "max": 255,
+                    "tooLong": "问题位置只能包含至多255个字符。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "问题位置不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-rectification",
+            "name": "Rectification",
+            "container": ".field-qualityissue-rectification",
+            "input": "#qualityissue-rectification",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "整改要求必须是一条字符串。",
+                    "max": 1000,
+                    "tooLong": "整改要求只能包含至多1,000个字符。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "整改要求不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-operatorids",
+            "name": "OperatorIDs",
+            "container": ".field-qualityissue-operatorids",
+            "input": "#qualityissue-operatorids",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "经办人员必须是一条字符串。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "经办人员不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-cc",
+            "name": "CC",
+            "container": ".field-qualityissue-cc",
+            "input": "#qualityissue-cc",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "抄送人员必须是一条字符串。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "抄送人员不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-picurls",
+            "name": "PicUrls[]",
+            "container": ".field-qualityissue-picurls",
+            "input": "#qualityissue-picurls",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.string(value, messages, {
+                    "message": "问题图片必须是一条字符串。",
+                    "skipOnEmpty": 1
+                });
+                yii.validation.required(value, messages, {
+                    "message": "问题图片不能为空。"
+                });
+            }
+        }, {
+            "id": "qualityissue-anonymous",
+            "name": "Anonymous",
+            "container": ".field-qualityissue-anonymous",
+            "input": "#qualityissue-anonymous",
+            "error": ".help-block.help-block-error",
+            "validate": function(attribute, value, messages, deferred, $form) {
+                yii.validation.boolean(value, messages, {
+                    "trueValue": "1",
+                    "falseValue": "0",
+                    "message": "是否匿名的值必须要么为\"1\"，要么为\"0\"。",
+                    "skipOnEmpty": 1
+                });
+            }
+        }], []);
+        jQuery('#add-issue-modal').modal({
+            "show": false
+        });
+        jQuery("#searchqualityissue-createdat").off('change.kvdrp').on('change.kvdrp', function() {
+            var drp = jQuery("#searchqualityissue-createdat-container").data('daterangepicker'),
+                fm,
+                to;
+            if ($(this).val() || !drp) {
+                return;
+            }
+            fm = moment().startOf('day').format('YYYY-MM-DD') || '';
+            to = moment().format('YYYY-MM-DD') || '';
+            drp.setStartDate(fm);
+            drp.setEndDate(to);
+            var v = jQuery('#searchqualityissue-createdat').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-createdat').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-end').val(v).trigger('change');
+        });
+        if (jQuery('#searchqualityissue-createdat').data('daterangepicker')) {
+            jQuery('#searchqualityissue-createdat').daterangepicker('destroy');
+        }
+        jQuery("#searchqualityissue-createdat-container").daterangepicker(daterangepicker_434d62e8, function(start, end, label) {
+            var val = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+            jQuery("#searchqualityissue-createdat-container").find('.range-value').val(val);
+            jQuery("#searchqualityissue-createdat").val(val).trigger('change');
+            var v = jQuery('#searchqualityissue-createdat').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-createdat').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-end').val(v).trigger('change');
+        });
+
+        jQuery("#searchqualityissue-deadline").off('change.kvdrp').on('change.kvdrp', function() {
+            var drp = jQuery("#searchqualityissue-deadline-container").data('daterangepicker'),
+                fm,
+                to;
+            if ($(this).val() || !drp) {
+                return;
+            }
+            fm = moment().startOf('day').format('YYYY-MM-DD') || '';
+            to = moment().format('YYYY-MM-DD') || '';
+            drp.setStartDate(fm);
+            drp.setEndDate(to);
+            var v = jQuery('#searchqualityissue-deadline').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-deadline').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-end').val(v).trigger('change');
+        });
+        if (jQuery('#searchqualityissue-deadline').data('daterangepicker')) {
+            jQuery('#searchqualityissue-deadline').daterangepicker('destroy');
+        }
+        jQuery("#searchqualityissue-deadline-container").daterangepicker(daterangepicker_434d62e8, function(start, end, label) {
+            var val = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+            jQuery("#searchqualityissue-deadline-container").find('.range-value').val(val);
+            jQuery("#searchqualityissue-deadline").val(val).trigger('change');
+            var v = jQuery('#searchqualityissue-deadline').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-deadline').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-end').val(v).trigger('change');
+        });
+
+        kvSelectRow('w0', 'danger');
+        jQuery('#w0').yiiGridView('setSelectionColumn', {
+            "name": "selection[]",
+            "class": "kv-row-checkbox",
+            "multiple": true,
+            "checkAll": "selection_all"
+        });
+        krajeeYiiConfirm('krajeeDialog');
+        jQuery('#w0-xlsx').exportdata({
+            "settings": kvexpmenu_81dd4559,
+            "alertMsg": "EXCEL 2007+ (xlsx)文件即将生成下载。"
+        });
+
+        jQuery('#w2').dropdown();
+        kvSelectRow('w4', 'danger');
+        jQuery('#w4').yiiGridView('setSelectionColumn', {
+            "name": "selection[]",
+            "class": "kv-row-checkbox",
+            "multiple": true,
+            "checkAll": "selection_all"
+        });
+        jQuery('#w5').dropdown();
+        var kvGridExp_61b92b09 = {
+            "gridId": "w4",
+            "action": "/power/pm/gridview/export/download",
+            "module": "gridview",
+            "encoding": "utf-8",
+            "bom": 1,
+            "target": "_blank",
+            "messages": {
+                "allowPopups": "禁用所有阻止弹出窗口的浏览器设置来确保下载成功",
+                "confirmDownload": "确定执行操作？",
+                "downloadProgress": "正在导出文件,请稍候...",
+                "downloadComplete": "请求已经提交,你可以在文件下载成功后关闭此对话."
+            },
+            "exportConversions": [{
+                "from": "<span class=\"glyphicon glyphicon-ok text-success\"></span>",
+                "to": "已激活"
+            }, {
+                "from": "<span class=\"glyphicon glyphicon-remove text-danger\"></span>",
+                "to": "未激活"
+            }],
+            "showConfirmAlert": true
+        };
+        var kvGridExp_383dfdd3 = {
+            "filename": "导出表格",
+            "showHeader": true,
+            "showPageSummary": true,
+            "showFooter": true
+        };
+        var kvGridExp_b92ba222 = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出HTML文件以供下载",
+            "config": {
+                "cssFile": ["https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"]
+            }
+        };
+        var kvGridExp_5033ee09 = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出CSV文件以供下载",
+            "config": {
+                "colDelimiter": ",",
+                "rowDelimiter": "\r\n"
+            }
+        };
+        var kvGridExp_04996634 = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出文本文件以供下载",
+            "config": {
+                "colDelimiter": "\t",
+                "rowDelimiter": "\r\n"
+            }
+        };
+        var kvGridExp_2f9cd83e = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出EXCEL文件以供下载",
+            "config": {
+                "worksheet": "导出工作表",
+                "cssFile": ""
+            }
+        };
+        var kvGridExp_8b77e060 = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出PDF文件以供下载",
+            "config": {
+                "mode": "UTF-8",
+                "format": "A4-L",
+                "destination": "D",
+                "marginTop": 20,
+                "marginBottom": 20,
+                "cssInline": ".kv-wrap{padding:20px}",
+                "methods": {
+                    "SetHeader": [{
+                        "odd": {
+                            "L": {
+                                "content": "由Yii2 Grid导出的PDF",
+                                "font-size": 8,
+                                "color": "#333333"
+                            },
+                            "C": {
+                                "content": "导出表格",
+                                "font-size": 16,
+                                "color": "#333333"
+                            },
+                            "R": {
+                                "content": "已经生成: Wed, 29-Dec-2021",
+                                "font-size": 8,
+                                "color": "#333333"
+                            }
+                        },
+                        "even": {
+                            "L": {
+                                "content": "由Yii2 Grid导出的PDF",
+                                "font-size": 8,
+                                "color": "#333333"
+                            },
+                            "C": {
+                                "content": "导出表格",
+                                "font-size": 16,
+                                "color": "#333333"
+                            },
+                            "R": {
+                                "content": "已经生成: Wed, 29-Dec-2021",
+                                "font-size": 8,
+                                "color": "#333333"
+                            }
+                        }
+                    }],
+                    "SetFooter": [{
+                        "odd": {
+                            "L": {
+                                "content": "© Krajee Yii2 Extensions",
+                                "font-size": 8,
+                                "font-style": "B",
+                                "color": "#999999"
+                            },
+                            "R": {
+                                "content": "[ {PAGENO} ]",
+                                "font-size": 10,
+                                "font-style": "B",
+                                "font-family": "serif",
+                                "color": "#333333"
+                            },
+                            "line": true
+                        },
+                        "even": {
+                            "L": {
+                                "content": "© Krajee Yii2 Extensions",
+                                "font-size": 8,
+                                "font-style": "B",
+                                "color": "#999999"
+                            },
+                            "R": {
+                                "content": "[ {PAGENO} ]",
+                                "font-size": 10,
+                                "font-style": "B",
+                                "font-family": "serif",
+                                "color": "#333333"
+                            },
+                            "line": true
+                        }
+                    }]
+                },
+                "options": {
+                    "title": "导出表格",
+                    "subject": "导出由kartik-v/yii2-grid扩展生成的PDF",
+                    "keywords": "krajee, grid, export, yii2-grid, pdf"
+                },
+                "contentBefore": "",
+                "contentAfter": ""
+            }
+        };
+        var kvGridExp_2c8e63ab = {
+            "dialogLib": "krajeeDialog",
+            "gridOpts": kvGridExp_61b92b09,
+            "genOpts": kvGridExp_383dfdd3,
+            "alertMsg": "将会导出JSON文件以供下载",
+            "config": {
+                "colHeads": [],
+                "slugColHeads": false,
+                "jsonReplacer": function(k, v) {
+                    return typeof (v) === 'string' ? $.trim(v) : v
+                },
+                "indentSpace": 4
+            }
+        };
+        var kvGridInit_84295dd8 = function() {
+            jQuery('#w4 .export-html').gridexport(kvGridExp_b92ba222);
+            jQuery('#w4 .export-csv').gridexport(kvGridExp_5033ee09);
+            jQuery('#w4 .export-txt').gridexport(kvGridExp_04996634);
+            jQuery('#w4 .export-xls').gridexport(kvGridExp_2f9cd83e);
+            jQuery('#w4 .export-pdf').gridexport(kvGridExp_8b77e060);
+            jQuery('#w4 .export-json').gridexport(kvGridExp_2c8e63ab);
+            jQuery('#w4-container').resizableColumns('destroy').resizableColumns({
+                "store": null,
+                "resizeFromBody": false
+            });
+        };
+        kvGridInit_84295dd8();
+        jQuery("#w4-pjax").on('pjax:timeout', function(e) {
+            e.preventDefault()
+        }).on('pjax:send', function() {
+            $("#w4-pjax").addClass('kv-grid-loading')
+        }).off('pjax:complete.f0181788').on('pjax:complete.f0181788', function() {
+            setTimeout(kvGridInit_84295dd8, 2500);
+            $("#w4-pjax").removeClass('kv-grid-loading');
+        });
+        jQuery('#w4').yiiGridView({
+            "filterUrl": "\/power\/pm\/safety",
+            "filterSelector": "#w4-filters input, #w4-filters select"
+        });
+        if (jQuery('#searchqualityissue-createdby').data('select2')) {
+            jQuery('#searchqualityissue-createdby').select2('destroy');
+        }
+        jQuery.when(jQuery('#searchqualityissue-createdby').select2(select2_aab5df1b)).done(initS2Loading('searchqualityissue-createdby', 's2options_d6851687'));
+
+        jQuery("#w4-pjax").off('pjax:complete.72524609').on('pjax:complete.72524609', function() {
+            setTimeout(function() {
+                if (jQuery('#searchqualityissue-createdby').data('select2')) {
+                    jQuery('#searchqualityissue-createdby').select2('destroy');
+                }
+                jQuery.when(jQuery('#searchqualityissue-createdby').select2(select2_aab5df1b)).done(initS2Loading('searchqualityissue-createdby', 's2options_d6851687'));
+            }, 100);
+        });
+        if (jQuery('#searchqualityissue-createdat').data('daterangepicker')) {
+            jQuery('#searchqualityissue-createdat').daterangepicker('destroy');
+        }
+        jQuery("#searchqualityissue-createdat-container").daterangepicker(daterangepicker_70f9df1a, function(start, end, label) {
+            var val = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+            jQuery("#searchqualityissue-createdat-container").find('.range-value').val(val);
+            jQuery("#searchqualityissue-createdat").val(val).trigger('change');
+            var v = jQuery('#searchqualityissue-createdat').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-createdat').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-createdat-end').val(v).trigger('change');
+        });
+
+        if (jQuery('#searchqualityissue-deadline').data('daterangepicker')) {
+            jQuery('#searchqualityissue-deadline').daterangepicker('destroy');
+        }
+        jQuery("#searchqualityissue-deadline-container").daterangepicker(daterangepicker_e4db9cd2, function(start, end, label) {
+            var val = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+            jQuery("#searchqualityissue-deadline-container").find('.range-value').val(val);
+            jQuery("#searchqualityissue-deadline").val(val).trigger('change');
+            var v = jQuery('#searchqualityissue-deadline').val() ? start.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-start').val(v).trigger('change');
+            var v = jQuery('#searchqualityissue-deadline').val() ? end.format('YYYY-MM-DD') : '';
+            jQuery('#searchqualityissue-deadline-end').val(v).trigger('change');
+        });
+
+        jQuery("#w4-pjax").off('pjax:complete.ce80711d').on('pjax:complete.ce80711d', function() {
+            kvSelectRow('w4', 'danger');
+            kvSelectColumn('w4', {
+                "name": "selection[]",
+                "multiple": true,
+                "checkAll": "selection_all"
+            });
+        });
+        jQuery(document).pjax("#w4-pjax a", {
+            "push": true,
+            "replace": false,
+            "timeout": 1000,
+            "scrollTo": false,
+            "container": "#w4-pjax"
+        });
+        jQuery(document).on("submit", "#w4-pjax form[data-pjax]", function(event) {
+            jQuery.pjax.submit(event, {
+                "push": true,
+                "replace": false,
+                "timeout": 1000,
+                "scrollTo": false,
+                "container": "#w4-pjax"
+            });
+        });
+        $('body').undelegate('.modaldialog', 'click').delegate('.modaldialog', 'click', function() {
+            aUrl = $(this).attr('data-url');
+            aTitle = $(this).attr('data-title');
+            aName = sessionStorage.getItem('machine_name');
+            aSpec = sessionStorage.getItem('machine_spec');
+
+            //先清除样式
+            $($(this).attr('data-target') + ' .modal-header').removeClass('head-none');
+            $($(this).attr('data-target') + ' .modal-dialog').removeClass('modal-lg');
+            $($(this).attr('data-target') + ' .modal-dialog').removeClass('modal-md');
+            //todo
+            mWidth = $(this).attr('modal-width');
+            log = $(this).attr('modal-log');
+            //none = $(this).attr('head-none');
+            $($(this).attr('data-target') + ' .modal-dialog').addClass(log);
+            //$($(this).attr('data-target')+' .modal-header').addClass(none);
+            $($(this).attr('data-target') + ' .modal-dialog').css('width', mWidth);
+            $($(this).attr('data-target') + ' .modalTitle').text(aTitle);
+            $($(this).attr('data-target')).modal("show")
+            .find('.modal-body')
+            .load(aUrl, function() {
+                if (aUrl == '/machine/create' && aName != undefined && aSpec != undefined) {
+                    jQuery('#common-modal #resmachine-name').val(aName);
+                    jQuery('#common-modal #resmachine-spec').val(aSpec);
+                    jQuery('#common-modal #resmachine-name').attr('name-con', aName);
+                    jQuery('#common-modal #resmachine-spec').attr('spec-con', aSpec);
+                    jQuery('#common-modal #resmachine-name').attr('readonly', 'readonly');
+                    jQuery('#common-modal #resmachine-spec').attr('readonly', 'readonly');
+                    jQuery('#common-modal #resmachine-spec').removeAttr('disabled');
+                    jQuery('#common-modal .btn-default').addClass('no-reset')
+                } else {
+                    jQuery('#common-modal #resmachine-name').removeAttr('readonly');
+                    jQuery('#common-modal #resmachine-spec').removeAttr('readonly');
+                    jQuery('#common-modal .btn-default').removeClass('no-reset');
+                    jQuery('#common-modal #resmachine-name').removeAttr('name-con');
+                    jQuery('#common-modal #resmachine-spec').removeAttr('spec-con');
+                }
+                if (jQuery('#select-printer').length > 0) {
+                    if (localStorage.getItem('printer')) {
+                        for (var i = 0; i < jQuery('#select-printer option').length; i++) {
+                            if (localStorage.getItem('printer') == jQuery('#select-printer option').eq(i).val()) {
+                                jQuery('#select-printer option').eq(i).attr('selected', 'selected');
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            });
+            return false;
+        })
+        jQuery('#common-modal').modal({
+            "show": false
+        });
+        jQuery('#w12').collapse();
+    });
+    </script>
+</body>
+</html>

@@ -28,16 +28,27 @@ router.post('/realUrl', (req, res) => {
     str = decodeURI(str);
     let { urlStr } = querystring.parse(str);
     let mat = urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
+    console.log(mat[4].replace(/\//g, ''))
     urlStr = mat ? mat[0] : null
+    let fileName = mat[4] ? mat[4].replace(/\//g, '') : null
 
-    urlStr && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr, (err, stdout, stderr) => {
+    urlStr && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr + ' ' + fileName, (err, stdout, stderr) => {
       if (err) console.log('stderr', err)
       if (stdout) {
         console.log('stdout', stdout)
         res.json({
           success: true,
-          urlStr, stdout
+          urlStr, stdout,
+          fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
         })
+        // cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + stdout, (err, stdout, stderr) => {
+        //   if (err) console.log('stderr', err)
+        //   if (stdout) {
+        //     console.log('stdout', stdout)
+        //   }
+        //   if (stderr) console.log('stderr', stderr)
+        // })
+
       }
       if (stderr) console.log('stderr', stderr)
     });

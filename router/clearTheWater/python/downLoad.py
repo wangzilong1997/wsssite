@@ -16,15 +16,11 @@ import getopt
 from retrying import retry
 
 
-def Find(string):
-    # findall() 查找匹配正则表达式的字符串
-    url = re.findall(
-        'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string)
-    return url
-
-
 @retry(stop_max_attempt_number=3)
-def download(video_url, video_title, headers):
+def download(video_url, video_title, music_title, headers,):
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
+    }
     # 视频下载
     if video_url == '':
         print('该视频可能无法下载哦~')
@@ -32,12 +28,12 @@ def download(video_url, video_title, headers):
     else:
         r = requests.get(url=video_url, headers=headers)
         if video_title == '':
-            video_title = '此视频没有文案_'
-        with open(f'public/videos/{video_title}.mp4', 'wb') as f:
+            video_title = '此视频没有文案_%s' % music_title
+        with open(f'{video_title}.mp4', 'wb') as f:
             f.write(r.content)
 
 
-def video_download(urlarg, fileName, musicarg):
+def video_download(urlarg, musicarg):
     headers = {
         'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
     }
@@ -54,23 +50,24 @@ def video_download(urlarg, fileName, musicarg):
     except:
         print('视频链接获取失败')
         video_url = ''
-    try:
-        music_url = str(js['item_list'][0]['music']['play_url']['url_list'][0])
-    except:
-        print('该音频目前不可用')
-        music_url = ''
-    try:
-        video_title = str(js['item_list'][0]['desc'])
-        music_title = str(js['item_list'][0]['music']['author'])
-    except:
-        print('标题获取失败')
-        video_title = '视频走丢啦~'
+    # try:
+    #     music_url = str(js['item_list'][0]['music']['play_url']['url_list'][0])
+    # except:
+    #     print('该音频目前不可用')
+    #     music_url = ''
+    # try:
+    #     video_title = str(js['item_list'][0]['desc'])
+    #     music_title = str(js['item_list'][0]['music']['author'])
+    # except:
+    #     print('标题获取失败')
+    #     video_title = '视频走丢啦~'
+    #     music_title = '音频走丢啦~'
+    # print('去水印后的链接',video_url)
+    # download(video_url,music_url,video_title,music_title,headers,musicarg)
     print(video_url)
-    download(video_url, fileName, headers)
 
 
 if __name__ == "__main__":
-    inputUrl = sys.argv[1]
-    fileName = sys.argv[2]
+    video_url = sys.argv[1]
     # print('用户输入的url', inputUrl)
-    video_download(inputUrl, fileName, 'yes')
+    download(video_url)

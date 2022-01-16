@@ -86,6 +86,6 @@ var httpsServer = https.createServer(credentials, app);
 httpServer.listen(80, () => {
   console.log("app监听80服务端口")
 })
-httpsServer.listen(433, () => {
-  console.log('app监听433服务端口')
+httpsServer.listen(443, () => {
+  console.log('app监听443服务端口')
 })

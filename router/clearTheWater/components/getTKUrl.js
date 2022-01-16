@@ -29,7 +29,8 @@ router.post('/realUrl', (req, res) => {
     let { urlStr } = querystring.parse(str);
     let mat = urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
     urlStr = mat ? mat[0] : null
-    cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr, (err, stdout, stderr) => {
+
+    urlStr && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr, (err, stdout, stderr) => {
       if (err) console.log('stderr', err)
       if (stdout) {
         console.log('stdout', stdout)

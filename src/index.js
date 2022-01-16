@@ -12,6 +12,10 @@ var cookieParser = require('cookie-parser');
 
 
 
+// 抖音视频处理相关路由
+const clearTheWater = require('../router/clearTheWater/index')
+
+
 // 用户相关路由
 const users = require('../router/users')
 // 五杀相关路由
@@ -26,6 +30,8 @@ app.use(cookieParser("wangzilongzhendeshuai"))
 
 // 用户相关路由
 app.use('/users', users)
+
+app.use('/clearTheWater', clearTheWater)
 
 app.get('/4dbim/befast', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' })

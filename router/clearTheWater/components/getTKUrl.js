@@ -79,7 +79,7 @@ router.post('/downLoadTK', (req, res) => {
     str += data
   })
   req.on('end', () => {
-    str = decodeURI(str);
+    str = decodeURI(str.replace(/%/g, '%25'));
     let { downLoadUrl, fileName } = querystring.parse(str);
     // 下载路径视频到服务器
     // 如何给前端信号已经下载好了呢？？ 重新建立接口

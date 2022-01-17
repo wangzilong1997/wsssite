@@ -43,7 +43,7 @@ router.post('/realUrl', (req, res) => {
         res.json({
           success: true,
           urlStr, stdout,
-          fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
+          fileName: fileName
         })
         // 下载路径视频到服务器
         // 如何给前端信号已经下载好了呢？？ 待解决

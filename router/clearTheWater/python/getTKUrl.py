@@ -54,17 +54,6 @@ def video_download(urlarg, fileName, musicarg):
     except:
         print('视频链接获取失败')
         video_url = ''
-    try:
-        music_url = str(js['item_list'][0]['music']['play_url']['url_list'][0])
-    except:
-        print('该音频目前不可用')
-        music_url = ''
-    try:
-        video_title = str(js['item_list'][0]['desc'])
-        music_title = str(js['item_list'][0]['music']['author'])
-    except:
-        print('标题获取失败')
-        video_title = '视频走丢啦~'
     print(video_url)
     # download(video_url, fileName, headers)
 

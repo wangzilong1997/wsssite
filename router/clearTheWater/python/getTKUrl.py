@@ -66,7 +66,7 @@ def video_download(urlarg, fileName, musicarg):
         print('标题获取失败')
         video_title = '视频走丢啦~'
     print(video_url)
-    download(video_url, fileName, headers)
+    # download(video_url, fileName, headers)
 
 
 if __name__ == "__main__":

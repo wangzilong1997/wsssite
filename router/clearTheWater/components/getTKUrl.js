@@ -35,13 +35,25 @@ router.post('/realUrl', (req, res) => {
       fileName = mat[4] ? mat[4].replace(/\//g, '') : null
     }
     urlStr && fileName && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr + ' ' + fileName, (err, stdout, stderr) => {
-      if (err) console.log('stderr', err)
+      if (err) console.log('err', err)
       if (stdout) {
+        // 解析成功先返回链接给前端
         console.log('stdout', stdout)
+        stdout = stdout.replace('\n', '')
         res.json({
           success: true,
           urlStr, stdout,
           fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
+        })
+        // 下载路径视频到服务器
+        // 如何给前端信号已经下载好了呢？？ 待解决
+        cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + stdout + '"' + ' ' + fileName, (err, stdout, stderr) => {
+          if (err) console.log('err', err)
+          if (stdout) {
+
+            console.log('stdout', stdout)
+          }
+          if (stderr) console.log('stderr', stderr)
         })
       }
       if (stderr) console.log('stderr', stderr)

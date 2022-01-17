@@ -17,7 +17,7 @@ router.get('/:url', (req, res) => {
   })
 })
 
-// 公用点赞接口
+// 获取真实路径接口
 router.post('/realUrl', (req, res) => {
   console.log('抖音视频解析接口')
   let str = ""
@@ -47,14 +47,14 @@ router.post('/realUrl', (req, res) => {
         })
         // 下载路径视频到服务器
         // 如何给前端信号已经下载好了呢？？ 待解决
-        cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + stdout + '"' + ' ' + fileName, (err, stdout, stderr) => {
-          if (err) console.log('err', err)
-          if (stdout) {
+        // cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + stdout + '"' + ' ' + fileName, (err, stdout, stderr) => {
+        //   if (err) console.log('err', err)
+        //   if (stdout) {
 
-            console.log('stdout', stdout)
-          }
-          if (stderr) console.log('stderr', stderr)
-        })
+        //     console.log('stdout', stdout)
+        //   }
+        //   if (stderr) console.log('stderr', stderr)
+        // })
       }
       if (stderr) console.log('stderr', stderr)
     });
@@ -70,6 +70,44 @@ router.post('/realUrl', (req, res) => {
     }
   })
 })
+
+// 下载文件到服务器接口
+router.post('/downLoadTK', (req, res) => {
+  console.log('抖音视频解析接口')
+  let str = ""
+  req.on('data', (data) => {
+    str += data
+  })
+  req.on('end', () => {
+    str = decodeURI(str);
+    let { downLoadUrl, fileName } = querystring.parse(str);
+    // 下载路径视频到服务器
+    // 如何给前端信号已经下载好了呢？？ 重新建立接口
+    cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + downLoadUrl + '"' + ' ' + fileName, (err, stdout, stderr) => {
+      if (err) console.log('err', err)
+      if (stdout) {
+        res.json({
+          success: true,
+          stdout, downLoadUrl,
+          fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
+        })
+        console.log('stdout', stdout)
+      }
+      if (stderr) console.log('stderr', stderr)
+      // 如果数据格式不正确
+      if (!stdout || !fileName) {
+        res.json({
+          success: false,
+          urlStr: '',
+          stdout: '请保证入参正确',
+          fileName: ''
+        })
+      }
+    })
+
+  })
+})
+
 
 
 module.exports = router;

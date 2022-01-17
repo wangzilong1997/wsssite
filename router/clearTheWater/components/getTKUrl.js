@@ -19,7 +19,7 @@ router.get('/:url', (req, res) => {
 
 // 公用点赞接口
 router.post('/realUrl', (req, res) => {
-  console.log('公用点赞接口')
+  console.log('抖音视频解析接口')
   let str = ""
   req.on('data', (data) => {
     str += data
@@ -27,12 +27,14 @@ router.post('/realUrl', (req, res) => {
   req.on('end', () => {
     str = decodeURI(str);
     let { urlStr } = querystring.parse(str);
+    let fileName = null;
+    // 从传入数据中找到dy视频地址
     let mat = urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
-    console.log(mat[4].replace(/\//g, ''))
-    urlStr = mat ? mat[0] : null
-    let fileName = mat[4] ? mat[4].replace(/\//g, '') : null
-
-    urlStr && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr + ' ' + fileName, (err, stdout, stderr) => {
+    if (mat) {
+      urlStr = mat[0]
+      fileName = mat[4] ? mat[4].replace(/\//g, '') : null
+    }
+    urlStr && fileName && cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + urlStr + ' ' + fileName, (err, stdout, stderr) => {
       if (err) console.log('stderr', err)
       if (stdout) {
         console.log('stdout', stdout)
@@ -41,17 +43,19 @@ router.post('/realUrl', (req, res) => {
           urlStr, stdout,
           fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
         })
-        // cp.exec('python3 router/clearTheWater/python/getTKUrl.py ' + stdout, (err, stdout, stderr) => {
-        //   if (err) console.log('stderr', err)
-        //   if (stdout) {
-        //     console.log('stdout', stdout)
-        //   }
-        //   if (stderr) console.log('stderr', stderr)
-        // })
-
       }
       if (stderr) console.log('stderr', stderr)
     });
+
+    // 如果数据格式不正确
+    if (!mat || !fileName) {
+      res.json({
+        success: false,
+        urlStr: '',
+        stdout: '请保证入参正确',
+        fileName: ''
+      })
+    }
   })
 })
 

@@ -1,9 +1,15 @@
-pythings/setting.py
-pythings/setting.ini
+# 公共模块
 node_modules
-src/setting.js
 
 # 证书
 cert/* 
 
+# 日志记录
+public/logs/*
+# 视频资源
+public/videos/*
+
+# 重要数据库配置
 conf
+# 数据库配置
+pythings/setting.py

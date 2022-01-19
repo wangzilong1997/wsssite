@@ -1,21 +1,11 @@
 var express = require('express')
 var router = express.Router();
-
 const querystring = require('querystring')
+
+const { saveFileinDb, fileExistinDb } = require('./service')
 
 // 运行子程序
 const cp = require('child_process')
-
-// 虎牙五杀信息接口
-router.get('/:url', (req, res) => {
-  console.log('page接口', req.params)
-  let { url } = req.params
-  res.json({
-    success: true,
-    realUrl: 'hello world',
-    url
-  })
-})
 
 // 获取真实路径接口
 router.post('/realUrl', (req, res) => {
@@ -70,7 +60,7 @@ router.post('/downLoadTK', (req, res) => {
   })
   req.on('end', () => {
     str = decodeURI(str.replace(/%/g, '%25'));
-    let { downLoadUrl, fileName } = querystring.parse(str);
+    let { downLoadUrl, fileName, info } = querystring.parse(str);
     // 下载路径视频到服务器
     // 如何给前端信号已经下载好了呢？？ 重新建立接口
     cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + downLoadUrl + '"' + ' ' + fileName, (err, stdout, stderr) => {
@@ -80,6 +70,13 @@ router.post('/downLoadTK', (req, res) => {
           success: true,
           stdout, downLoadUrl,
           fileName: 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4'
+        })
+        // 如果数据库中存在该地址 则不新增
+        fileExistinDb('https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4').then(result => {
+          if (result.length == 0) {
+            // 存入数据库
+            saveFileinDb(fileName, 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4', 'douyi', 'mp4', info)
+          }
         })
         console.log('stdout', stdout)
       }
@@ -94,6 +91,8 @@ router.post('/downLoadTK', (req, res) => {
         })
       }
     })
+
+
 
   })
 })

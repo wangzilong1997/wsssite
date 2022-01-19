@@ -29,6 +29,7 @@ const test = require('../router/test')
 app.use(express.static(path.join(__dirname, '../public')));
 
 // 日志相关中间件
+/*/   日志相关    */
 var logger = require('morgan');
 
 var FileStreamRotator = require('file-stream-rotator');
@@ -43,6 +44,20 @@ var accessLogStream = FileStreamRotator.getStream({
 
 app.use(logger('combined', { stream: accessLogStream }));//写入日志文件
 
+var util = require('util')
+
+var logPath = path.join(__dirname, '../public/logs/console.log')
+var logFile = fs.createWriteStream(logPath, { flags: 'a' })
+// 从新定义console 并且记录输出
+console.log = function () {
+  logFile.write(util.format.apply(null, arguments) + '\n')
+  process.stdout.write(util.format.apply(null, arguments) + '\n')
+}
+console.error = function () {
+  logFile.write(util.format.apply(null, arguments) + '\n')
+  process.stderr.write(util.format.apply(null, arguments) + '\n')
+}
+/*   日志相关    /*/
 
 // cookie过滤中间件
 app.use(cookieParser("wangzilongzhendeshuai"))

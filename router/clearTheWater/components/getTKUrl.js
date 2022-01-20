@@ -21,7 +21,7 @@ router.post('/realUrl', (req, res) => {
     let mat = urlStr && urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
     console.log(mat)
     // 获取到是哪个平台
-    let platform = info && info.match(/\w+(?=\.com)/) && info.match(/\w+(?=\.com)/)[0]
+    let platform = urlStr && urlStr.match(/\w+(?=\.com)/) && urlStr.match(/\w+(?=\.com)/)[0]
     console.log(platform)
 
     if (mat) {

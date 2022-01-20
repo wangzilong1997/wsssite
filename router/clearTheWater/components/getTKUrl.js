@@ -21,7 +21,7 @@ router.post('/realUrl', (req, res) => {
     let mat = urlStr && urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
     console.log(mat)
     // 获取到是哪个平台
-    let platform = urlStr && urlStr.match(/\w+(?=\.com)/)[0]
+    let platform = info && info.match(/\w+(?=\.com)/) && info.match(/\w+(?=\.com)/)[0]
     console.log(platform)
 
     if (mat) {
@@ -67,7 +67,7 @@ router.post('/downLoadTK', (req, res) => {
     str = decodeURI(str.replace(/%/g, '%25'));
     let { downLoadUrl, fileName, info } = querystring.parse(str);
     // 获取到是哪个平台
-    let platform = info && info.match(/\w+(?=\.com)/)[0]
+    let platform = info && info.match(/\w+(?=\.com)/) && info.match(/\w+(?=\.com)/)[0]
     // 下载路径视频到服务器
     // 如何给前端信号已经下载好了呢？？ 重新建立接口
     cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + downLoadUrl + '" ' + fileName, (err, stdout, stderr) => {

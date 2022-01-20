@@ -37,7 +37,7 @@ def download(video_url, video_title, headers):
             f.write(r.content)
 
 
-def video_download(urlarg, fileName, musicarg):
+def video_download(urlarg):
     headers = {
         'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
     }
@@ -60,6 +60,5 @@ def video_download(urlarg, fileName, musicarg):
 
 if __name__ == "__main__":
     inputUrl = sys.argv[1]
-    fileName = sys.argv[2]
     # print('用户输入的url', inputUrl)
-    video_download(inputUrl, fileName, 'yes')
+    video_download(inputUrl)

@@ -66,6 +66,8 @@ router.post('/downLoadTK', (req, res) => {
   req.on('end', () => {
     str = decodeURI(str.replace(/%/g, '%25'));
     let { downLoadUrl, fileName, info } = querystring.parse(str);
+    // 获取到是哪个平台
+    let platform = info && info.match(/\w+(?=\.com)/)[0]
     // 下载路径视频到服务器
     // 如何给前端信号已经下载好了呢？？ 重新建立接口
     cp.exec('python3 router/clearTheWater/python/downLoad.py ' + '"' + downLoadUrl + '" ' + fileName, (err, stdout, stderr) => {
@@ -80,7 +82,7 @@ router.post('/downLoadTK', (req, res) => {
         fileExistinDb('https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4').then(result => {
           if (result.length == 0) {
             // 存入数据库
-            saveFileinDb(fileName, 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4', 'douyin', 'mp4', info)
+            saveFileinDb(fileName, 'https://www.guofudiyiqianduan.com/videos/' + fileName + '.mp4', platform, 'mp4', info)
           }
         })
         console.log('stdout', stdout)

@@ -88,11 +88,11 @@ app.use('/penta', penta)
 // 测试路由
 app.use('/test', test)
 
-// index页面返回资源接口
+// 页面返回资源接口
 app.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' })
 
-  fs.readFile(path.join(__dirname, '../public/pages/index.html'), 'utf-8', (err, data) => {
+  fs.readFile(path.join(__dirname, '../public/index.html'), 'utf-8', (err, data) => {
     if (err) {
       throw err
     }

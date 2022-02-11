@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.034bb0da.chunk.css",
-    "main.js": "/static/js/main.ee903740.chunk.js",
-    "main.js.map": "/static/js/main.ee903740.chunk.js.map",
+    "main.js": "/static/js/main.0c12ff2c.chunk.js",
+    "main.js.map": "/static/js/main.0c12ff2c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.9b89de3f.js",
     "runtime-main.js.map": "/static/js/runtime-main.9b89de3f.js.map",
     "static/css/2.5c89d55b.chunk.css": "/static/css/2.5c89d55b.chunk.css",
@@ -13,15 +13,17 @@
     "static/css/main.034bb0da.chunk.css.map": "/static/css/main.034bb0da.chunk.css.map",
     "static/js/2.7546ca23.chunk.js.LICENSE.txt": "/static/js/2.7546ca23.chunk.js.LICENSE.txt",
     "static/media/amazed.b9ee4ca0.svg": "/static/media/amazed.b9ee4ca0.svg",
+    "static/media/happiness.f1edab3c.svg": "/static/media/happiness.f1edab3c.svg",
     "static/media/kiss.5f0b0516.svg": "/static/media/kiss.5f0b0516.svg",
     "static/media/logo.9f29a786.png": "/static/media/logo.9f29a786.png",
-    "static/media/scared.3d461b38.svg": "/static/media/scared.3d461b38.svg"
+    "static/media/scared.3d461b38.svg": "/static/media/scared.3d461b38.svg",
+    "static/media/thief.4a87fedf.svg": "/static/media/thief.4a87fedf.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.9b89de3f.js",
     "static/css/2.5c89d55b.chunk.css",
     "static/js/2.7546ca23.chunk.js",
     "static/css/main.034bb0da.chunk.css",
-    "static/js/main.ee903740.chunk.js"
+    "static/js/main.0c12ff2c.chunk.js"
   ]
 }

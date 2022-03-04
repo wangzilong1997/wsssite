@@ -62,13 +62,14 @@ def findtext(selector, index, lenpage):
         href = selector.xpath(
             '/html/body/div[1]/div/article/section/ul[2]/li[' + str(lenpage - item) + ']/a/@href')
         # 注意此处虎牙img并非src而是data-original
-        #imgurl = selector.xpath('/html/body/div[1]/div/article/section/ul[2]/li['+ str(lenpage - item) +']/a/div/img/@data-original')
-        imgurl = selector.xpath(
-            '//*[@id="root"]/div/article/section/ul[2]/li[' + str(lenpage - item) + ']/a/div/span/img')
+        # imgurl = selector.xpath('/html/body/div[1]/div/article/section/ul[2]/li[' + str(
+        #     lenpage - item) + ']/a/div/img/@data-original')
+        # imgurl = selector.xpath(
+        #     '//*[@id="root"]/div/article/section/ul[2]/li[' + str(lenpage - item) + ']/a/div/span/img')
         # //*[@id="root"]/div/article/section/ul[2]/li[2]/a/div/span/img
 
-        # imgurl = [
-        #     '//v-huya-img2.msstatic.com/screenshot/2139/585051519/99.jpg?x-oss-process=style/220x124']
+        imgurl = [
+            '//v-huya-img2.msstatic.com/screenshot/2139/585051519/99.jpg?x-oss-process=style/220x124']
         print("hrefhref", href)
         print("imgurlimgurl", imgurl)
         item = item + 1

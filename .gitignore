@@ -2,7 +2,7 @@
 node_modules
 
 # 证书
-cert/* 
+# cert/* 
 
 # 日志记录
 public/logs/*

@@ -5,7 +5,7 @@ const path = require("path")
 var http = require('http');
 var https = require('https')
 
-var privatepem = fs.readFileSync('cert/guofudiyiqianduan.com.pem', 'utf8')
+var privatepem = fs.readFileSync('cert/guofudiyiqianduan.com_bundle.pem', 'utf8')
 var privatekey = fs.readFileSync('cert/guofudiyiqianduan.com.key', 'utf8')
 var credentials = { key: privatekey, cert: privatepem }
 

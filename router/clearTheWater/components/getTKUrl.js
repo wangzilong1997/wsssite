@@ -19,10 +19,10 @@ router.post('/realUrl', (req, res) => {
     let fileName = null;
     // 从传入数据中找到dy视频地址
     let mat = urlStr && urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
-    console.log(mat)
+    console.log('接收到的url地址', mat[0])
     // 获取到是哪个平台
     let platform = urlStr && urlStr.match(/\w+(?=\.com)/) && urlStr.match(/\w+(?=\.com)/)[0]
-    console.log(platform)
+    console.log('接收到的url所属于的平台', platform)
 
     if (mat) {
       urlStr = mat[0]

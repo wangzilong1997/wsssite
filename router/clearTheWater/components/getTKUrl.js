@@ -19,7 +19,7 @@ router.post('/realUrl', (req, res) => {
     let fileName = null;
     // 从传入数据中找到dy视频地址
     let mat = urlStr && urlStr.match(/(https?:\/\/)([0-9a-z.]+)(:[0-9]+)?([/0-9a-z.]+)?(\?[0-9a-z&=]+)?(#[0-9-a-z]+)?/i)
-    console.log('接收到的url地址', mat[0])
+    console.log('接收到的url地址', mat && mat[0])
     // 获取到是哪个平台
     let platform = urlStr && urlStr.match(/\w+(?=\.com)/) && urlStr.match(/\w+(?=\.com)/)[0]
     console.log('接收到的url所属于的平台', platform)
@@ -29,7 +29,7 @@ router.post('/realUrl', (req, res) => {
       fileName = mat[4] ? mat[4].replace(/\//g, '') : null
     }
     console.log('python3 router/clearTheWater/python/' + platform + '.py ' + urlStr)
-    urlStr && cp.exec('python3 router/clearTheWater/python/' + platform + '.py ' + urlStr, (err, stdout, stderr) => {
+    mat && mat[0] && fileName && urlStr && cp.exec('python3 router/clearTheWater/python/' + platform + '.py ' + urlStr, (err, stdout, stderr) => {
       if (err) console.log('err', err)
       if (stdout) {
         // 解析成功先返回链接给前端
